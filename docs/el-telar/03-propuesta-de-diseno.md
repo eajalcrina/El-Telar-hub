@@ -140,3 +140,22 @@ Reemplaza la etiqueta crema del camino D, que tapaba la trama. El concepto cambi
 Fuente: `prototipo-cerebro.html`. Pendientes:
 - el wording, con el giro de memoria a cerebro;
 - si el cabezal lleva un personaje o se queda como objeto.
+
+### Ajustes del camino E (17-nov-2026)
+
+**Dibujo**
+- Menos tiras (11 en escritorio, 6 en celular), con signos tres veces más grandes (36 px) y grises más suaves.
+- Los bloques muestran solo su forma, sin el nombre del proceso; un punto rojo marca el bloque terminado.
+- Bordes redondeados en bloques, cubos, rombos, cabezal, nodos, pulsos y esquinas de las conexiones.
+- Un código atrapado se encoge del tamaño de la tira al de la celda mientras vuela.
+
+**Mensaje sin «olvidar» (opciones en el prototipo)**
+
+| # | Titular | Bajada |
+|---|---|---|
+| 1 | Tejemos el cerebro de tu empresa, un proceso a la vez. | Conectamos lo que hoy vive en chats, Excels y correos, y lo convertimos en procesos con IA que funcionan. |
+| 2 | Tu empresa ya tiene los hilos. Nosotros tejemos su cerebro. | Capacitamos a tu equipo e instalamos procesos con IA que conectan tus áreas, uno por uno. |
+| 3 | Del desorden de datos a una empresa que piensa conectada. | Instalamos procesos con IA sobre lo que tu equipo ya usa, con reglas y control humano. |
+| 4 | Conectamos lo que tu empresa sabe y lo ponemos a trabajar. | Procesos con IA instalados con tu equipo, medidos en dinero y a tu nombre. |
+
+El campo pasa a «¿Qué proceso conectamos primero?» con el botón «Conectar».
