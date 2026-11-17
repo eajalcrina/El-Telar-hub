@@ -1,6 +1,6 @@
 # El Telar: propuesta de diseño
 
-> 17-nov-2026 · Borrador para decisión del fundador. Basado en `panel/03-direccion-creativa.md`, con los ajustes de `panel/05-adopcion-medianas.md`. Hay un prototipo visual privado de la dirección recomendada; nada está publicado en la web.
+> 17-nov-2026 · Borrador para decisión del fundador. Basado en `panel/03-direccion-creativa.md`, con los ajustes de `panel/05-adopcion-medianas.md`. Nada está publicado en la web; los prototipos son artefactos privados.
 
 ## Lo que hace Satia y dónde se detiene
 
@@ -76,3 +76,22 @@ En la categoría, la respuesta de la IA suele ser un chat o una mascota. Aquí e
 1. Elegir dirección (Textus, Tarjeta o Lanzadera) con el prototipo a la vista.
 2. ¿El rojo de Redesign Lab se queda en El Telar o El Telar tiene paleta propia?
 3. ¿Quién define y revisa el diccionario de palabras por pieza con frases reales de clientes?
+
+## Actualización del 17-nov-2026: decisiones del fundador
+
+- **Personaje central.** El sitio es una sola pantalla centrada, como Satia, con un personaje al centro que reacciona. El resto de la información va en otras páginas. Esto reemplaza la recomendación «sin personaje» del panel.
+- **Titular.** Arriba la frase disruptiva: «Escribe lo que tu empresa olvida. Te lo devolvemos tejido.» Debajo, una línea llana: «Capacitamos a tu equipo e instalamos procesos con IA, uno por uno.»
+- **Motor del personaje.** El personaje está hecho de cruces de urdimbre y trama en Canvas, y el cursor lo deshilacha. Los cruces sueltos se ven como hilos y vuelven a su lugar. Al entrar, cada fila llega como una pasada de lanzadera, alternando el lado.
+- **Reacciones.**
+  - Sigue el puntero con la mirada.
+  - Parpadea y respira.
+  - Abre la boca cuando el cursor lo toca.
+  - Se vuelve a tejer con los bits de lo que escribe el visitante.
+  - Al enviar, salta y dice la pieza que corresponde, o pone cara de duda si no hay pieza.
+- **Las tres direcciones con personaje:**
+  - Textus, con «Tela», un tejido colgado con flecos;
+  - Tarjeta, con «Tarja», una tarjeta perforada;
+  - Lanzadera, con «Lanza», que arrastra su hilo.
+
+  El director creativo recomienda Tela.
+- **Prototipo comparativo:** artefacto privado «El Telar, personaje central». Fuente en `prototipo-personajes.html`.

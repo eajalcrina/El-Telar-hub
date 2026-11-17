@@ -78,7 +78,7 @@ El Telar habla como una jefa de operaciones: frases cortas, cifras con fecha y t
 
 ## Límites del concepto
 
-- **Sin personaje.** El objeto de la marca es la tela de cada cliente, que suma un hilo por pieza activa.
+- **Personaje central (decisión del fundador, 17-nov-2026, contra la recomendación inicial del panel).** El sitio tiene un personaje tejido al centro, como Sati en Satia. La recomendación es «Tela», de la dirección Textus (ver `panel/06-personaje-central.md`). El nombre está por decidir.
 - **Sin iconografía andina ni quipus.** Hay riesgo de apropiación cultural, y en provincia se nota cuando una marca de Lima usa lo local como decorado.
 - **Sin artesanía.** No se usan madera, lana, tonos tierra, ovillos ni hilo rojo del destino. El telar que se cuenta es el de Jacquard, la máquina programable.
 - **La metáfora no reemplaza la oferta.** La primera pantalla dice qué hace El Telar en palabras llanas; el origen del nombre va más abajo.

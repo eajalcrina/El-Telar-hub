@@ -13,7 +13,7 @@
 ## Consensos
 
 1. **Las cuatro propuestas de valor repiten tres ideas:** un proceso a la vez, medido en dinero, y lo instalado queda del cliente. Es el territorio que Satia no puede ocupar sin cambiar su modelo, porque cobra por registros almacenados.
-2. **Sin personaje.** Cuatro de cinco lo rechazan: Sati sirve al autoservicio, El Telar vende procesos entregados por personas, y al gerente de provincia una mascota le parece un juguete. El objeto visible es la tela del cliente, que crece un hilo por proceso activo.
+2. **Sin personaje (revertido por el fundador el 17-nov-2026: el sitio tendrá personaje central; ver `06-personaje-central.md`).** Cuatro de cinco lo rechazaban: Sati sirve al autoservicio, El Telar vende procesos entregados por personas, y al gerente de provincia una mascota le parece un juguete. El objeto visible es la tela del cliente, que crece un hilo por proceso activo.
 3. **Marca respaldada por ahora:** «El Telar, un sistema de Redesign Lab» en el pie, contratos y sección de confianza; nunca en el logotipo. La escisión llega con casos medidos propios y equipo propio. Los cinco coinciden.
 4. **El tejido reemplaza al «Cerebro».** Conserva la idea de memoria de la empresa sin prometer que algo piensa por el cliente, que era la objeción de la ronda 2.
 5. **Servicio con software.** El cliente compra un proceso instalado con suscripción; el software es la herramienta de El Telar para instalar más rápido.

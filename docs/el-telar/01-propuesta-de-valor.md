@@ -65,12 +65,7 @@ Cada promesa tiene una regla publicada que el cliente puede exigir:
 
 ## Arquitectura de marca
 
-**Decisión del fundador.** Pediste una iniciativa independiente. Los cinco expertos recomiendan otra cosa mientras no haya casos medidos propios: «El Telar, un sistema de Redesign Lab», con marca propia en el logotipo y el dominio, y Redesign Lab en el pie, los contratos y la sección de confianza, junto al sello Claude Network Partner. Su argumento es que una marca nueva sin historial no responde a las preguntas que hizo el comprador en la validación («¿conocen mi rubro?»), y que el sello de partner es de Redesign Lab.
-
-| Opción | A favor | En contra |
-|---|---|---|
-| Independiente desde hoy | Identidad limpia, lista para escindirse | Sin casos ni sello propios al empezar |
-| Respaldada por Redesign Lab (recomendación del panel) | Hereda trayectoria, equipo y sello | Hay que fijar desde ya el criterio de escisión |
+**Decidido (17-nov-2026): El Telar, un sistema de Redesign Lab.** Marca propia en el logotipo y el dominio; Redesign Lab en el pie, los contratos y la sección de confianza, junto al sello Claude Network Partner. Pendiente: fijar el criterio de escisión.
 
 ## Decisiones pendientes
 

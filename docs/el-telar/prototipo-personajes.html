@@ -1,0 +1,391 @@
+<!-- Fuente del prototipo. La tipografía Mluvka se incrusta al publicar (marcador __MLUVKA__); sin ella usa la de respaldo. -->
+<title>El Telar, personaje central</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Una sola pantalla centrada: personaje tejido al centro, frase disruptiva, una línea llana y un campo. */
+@font-face { font-family: 'Mluvka'; src: url(data:font/woff2;base64,__MLUVKA__) format('woff2'); font-weight: 400; font-display: swap; }
+:root {
+  --crema: #F4F1EC;
+  --papel: #FBFAF7;
+  --oscuro: #121110;
+  --texto-2: #4D4A46;
+  --rotulo: #66625D;
+  --hilo: rgba(18,17,16,0.05);
+  --linea: rgba(18,17,16,0.14);
+  --trama: #F32769;
+  --trama-osc: #C4126A;
+  --sans: 'Mluvka', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; color: var(--oscuro); font-family: var(--sans); -webkit-font-smoothing: antialiased;
+  background-color: var(--crema);
+  background-image:
+    radial-gradient(ellipse 60% 50% at 50% 42%, rgba(243,39,105,0.07), transparent 70%),
+    repeating-linear-gradient(90deg, var(--hilo) 0 1px, transparent 1px 10px);
+}
+.pantalla { min-height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; max-width: 1200px; width: 100%; margin: 0 auto; }
+.marca { font-size: 24px; letter-spacing: -0.02em; line-height: 1; margin: 0; }
+.marca span { color: var(--trama); }
+.nav-der { display: flex; align-items: center; gap: 20px; }
+.nav-der a { font-size: 15px; color: var(--texto-2); text-decoration: none; }
+.nav-der a:hover { color: var(--oscuro); }
+.cta { display: inline-flex; align-items: center; min-height: 40px; padding: 0 18px; border-radius: 999px; background: var(--oscuro); color: var(--papel) !important; font-size: 14px; }
+@media (max-width: 640px) { .nav-der a:not(.cta) { display: none; } }
+
+main { display: grid; justify-items: center; align-content: center; text-align: center; gap: 0; padding-block: 8px 24px; }
+.selector { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--papel); border: 1px solid var(--linea); margin-bottom: 8px; }
+.selector button { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border: 0; background: transparent; color: var(--texto-2); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.selector button[aria-pressed="true"] { background: var(--oscuro); color: var(--papel); }
+.selector button:focus-visible { outline: 2px solid var(--trama); outline-offset: 2px; }
+.nota-proto { font-family: var(--mono); font-size: 11px; color: var(--rotulo); letter-spacing: 0.06em; margin: 0 0 6px; }
+
+.dice { min-height: 34px; font-size: clamp(18px, 2.2vw, 24px); letter-spacing: -0.01em; margin: 6px 0 0; }
+.dice .cursor { display: inline-block; width: 2px; height: 1em; background: var(--trama); vertical-align: -0.15em; margin-left: 2px; }
+.escena { position: relative; width: min(400px, 46vh, calc(100vw - 32px)); aspect-ratio: 1 / 1; max-width: 100%; touch-action: none; }
+.escena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+h1 { font-size: clamp(30px, 4.2vw, 52px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 400; margin: 0; max-width: 18ch; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--trama); }
+.llana { font-size: clamp(16px, 1.6vw, 19px); color: var(--texto-2); margin: 14px 0 0; max-width: 46ch; line-height: 1.5; }
+form { margin-top: 24px; width: min(560px, 100%); }
+.fila { display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 999px; background: var(--papel); border: 1px solid var(--linea); box-shadow: 0 8px 30px rgba(18,17,16,0.06); }
+.fila:focus-within { border-color: var(--oscuro); }
+.fila input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 16px; height: 44px; font-family: var(--sans); font-size: 17px; color: var(--oscuro); }
+.fila input:focus { outline: none; }
+.fila button { border: 0; border-radius: 999px; background: var(--trama); color: var(--papel); font-family: var(--sans); font-size: 16px; padding: 0 22px; height: 44px; cursor: pointer; }
+.fila button:hover { background: var(--trama-osc); }
+.fila button:focus-visible { outline: 2px solid var(--oscuro); outline-offset: 2px; }
+.sugerencia { font-family: var(--mono); font-size: 12px; color: var(--rotulo); margin: 12px 0 0; }
+footer { text-align: center; padding-block: 14px 20px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rotulo); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<div class="pantalla">
+  <nav aria-label="Principal">
+    <p class="marca">El Telar<span>.</span></p>
+    <div class="nav-der">
+      <a href="#">Cómo funciona</a>
+      <a href="#">Piezas</a>
+      <a class="cta" href="#">Conversemos</a>
+    </div>
+  </nav>
+
+  <main>
+    <p class="nota-proto">Prototipo sin publicar. Elige la dirección:</p>
+    <div class="selector" role="group" aria-label="Dirección de diseño">
+      <button type="button" data-dir="tela" aria-pressed="true">Textus</button>
+      <button type="button" data-dir="tarja" aria-pressed="false">Tarjeta</button>
+      <button type="button" data-dir="lanza" aria-pressed="false">Lanzadera</button>
+    </div>
+    <p class="dice" id="dice" aria-live="polite"><span id="dice-txt">Hola</span><span class="cursor" aria-hidden="true"></span></p>
+    <div class="escena" id="escena">
+      <canvas id="lienzo" aria-hidden="true"></canvas>
+    </div>
+    <h1>Escribe lo que tu empresa olvida. <em>Te lo devolvemos tejido.</em></h1>
+    <p class="llana">Capacitamos a tu equipo e instalamos procesos con IA, uno por uno.</p>
+    <form id="form" autocomplete="off">
+      <label class="sr" for="frase">¿Qué se le escapa a tu empresa cada semana?</label>
+      <div class="fila">
+        <input id="frase" name="frase" maxlength="60" placeholder="Las facturas que nadie cobra a tiempo">
+        <button type="submit">Tejer</button>
+      </div>
+    </form>
+    <p class="sugerencia">Pasa el cursor sobre el personaje. Escribe y mira cómo se teje.</p>
+  </main>
+
+  <footer>El Telar, un sistema de Redesign Lab</footer>
+</div>
+
+<script>
+(function () {
+  var COL = { oscuro: '#121110', trama: '#F32769', papel: '#FBFAF7', gris: '#3A3836', suave: '#D9D4CC' };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var N = 40;                       // retícula de 40 x 40 cruces
+  var canvas = document.getElementById('lienzo');
+  var ctx = canvas.getContext('2d');
+  var escena = document.getElementById('escena');
+  var size = 440, cell = 11, dpr = 1;
+  var parts = [], dir = 'tela', pattern = null, gaze = { x: 0, y: 0 }, blinkUntil = 0, nextBlink = 0;
+  var mood = 'feliz', pointer = { x: -9999, y: -9999, on: false }, glide = { x: 0, tx: 0 };
+
+  var FRASES = {
+    tela: ['Hola, soy Tela.', 'Tejo la memoria de tu empresa.', 'Cuéntame qué se le olvida.'],
+    tarja: ['Hola, soy Tarja.', 'Cada proceso que aprendo queda perforado en mí.', 'Escríbeme y lo leo.'],
+    lanza: ['Hola, soy Lanza.', 'Llevo el hilo de una persona a otra.', '¿Qué se olvidó esta semana?']
+  };
+
+  function bitsOf(text) {
+    var out = [], enc = new TextEncoder().encode(text);
+    for (var i = 0; i < enc.length; i++) out.push(enc[i].toString(2).padStart(8, '0'));
+    return out;
+  }
+  function weftAt(r, c) {
+    if (!pattern || !pattern.length) return ((r + c) % 4) < 2;   // sarga por defecto
+    var bits = pattern[r % pattern.length]; var j = c % 16; return bits[j < 8 ? j : 15 - j] === '1';
+  }
+
+  // ---------- Máscaras de cada personaje ----------
+  function maskTela(r, c) {
+    if (r === 4 && c >= 5 && c <= 34) return 'barra';
+    if (r === 5 && (c === 9 || c === 30)) return 'urdimbre';
+    var inBody = r >= 6 && r <= 31 && c >= 7 && c <= 32;
+    if (inBody) {
+      var dr = Math.min(r - 6, 31 - r), dc = Math.min(c - 7, 32 - c);
+      if (dr + dc < 3) return null;
+      if (r >= 13 && r <= 16 && ((c >= 12 && c <= 15) || (c >= 24 && c <= 27))) return 'ojo';
+      if (r >= 20 && r <= 22 && c >= 17 && c <= 22) return 'boca';
+      return 'tejido';
+    }
+    if (r >= 32 && r <= 36 && c >= 8 && c <= 31 && c % 2 === 1) return 'fleco';
+    return null;
+  }
+  function maskTarja(r, c) {
+    if (r < 8 || r > 31 || c < 3 || c > 36) return null;
+    if ((r - 8) + (c - 3) < 5) return null;                // esquina cortada
+    if (r === 8 || r === 31 || c === 3 || c === 36 || (r - 8) + (c - 3) === 5) return 'borde';
+    if (r >= 13 && r <= 16 && ((c >= 11 && c <= 14) || (c >= 25 && c <= 28))) return 'ojo';
+    if (r >= 20 && r <= 22 && c >= 17 && c <= 22) return 'boca';
+    if (r >= 25 && r <= 29 && c >= 6 && c <= 33) return 'perfo';
+    return 'carton';
+  }
+  function maskLanza(r, c) {
+    var cx = 19.5, half = 14, x = (c - cx) / half;
+    if (Math.abs(x) > 1) return null;
+    var h = 8.2 * Math.pow(1 - x * x, 0.75);
+    var dy = r - 20;
+    if (Math.abs(dy) > h) return null;
+    if (dy >= -2 && dy <= 2 && c >= 14 && c <= 25) return 'bobina';
+    if (r >= 14 && r <= 16 && ((c >= 11 && c <= 13) || (c >= 26 && c <= 28))) return 'ojo';
+    return 'casco';
+  }
+  var MASKS = { tela: maskTela, tarja: maskTarja, lanza: maskLanza };
+
+  function build(intro) {
+    parts = [];
+    var mask = MASKS[dir];
+    for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) {
+      var k = mask(r, c); if (!k) continue;
+      var hx = c * cell + cell / 2, hy = r * cell + cell / 2;
+      var p = { r: r, c: c, k: k, hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0, delay: 0 };
+      if (intro && !reduce) {
+        // cada fila entra como una pasada de lanzadera, alternando el lado
+        var fromLeft = r % 2 === 0;
+        p.x = fromLeft ? -40 - Math.random() * 120 : size + 40 + Math.random() * 120;
+        p.y = hy + (Math.random() - 0.5) * 30;
+        p.delay = performance.now() + r * 28 + Math.random() * 60;
+      }
+      parts.push(p);
+    }
+  }
+
+  function resize() {
+    var rect = escena.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var old = size;
+    size = rect.width; cell = size / N;
+    canvas.width = Math.round(size * dpr); canvas.height = Math.round(size * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var s = size / old;
+    parts.forEach(function (p) { p.hx = p.c * cell + cell / 2; p.hy = p.r * cell + cell / 2; p.x *= s; p.y *= s; });
+  }
+
+  // ---------- Física ----------
+  function step(now) {
+    var R = cell * 6;
+    glide.x += (glide.tx - glide.x) * 0.06;
+    parts.forEach(function (p) {
+      if (p.delay && now < p.delay) return;
+      p.delay = 0;
+      var hx = p.hx + (dir === 'lanza' ? glide.x : 0), hy = p.hy;
+      if (p.k === 'fleco') hx += Math.sin(now / 700 + p.c * 0.6) * cell * 0.35 * ((p.r - 31) / 5);
+      if (dir === 'tela' || dir === 'tarja') hy += Math.sin(now / 1100) * cell * 0.25; // respiración
+      var ax = (hx - p.x) * 0.075, ay = (hy - p.y) * 0.075;
+      if (pointer.on) {
+        var dx = p.x - pointer.x, dy = p.y - pointer.y, d2 = dx * dx + dy * dy;
+        if (d2 < R * R) { var d = Math.sqrt(d2) || 1, f = (1 - d / R) * 2.6; ax += dx / d * f; ay += dy / d * f; }
+      }
+      p.vx = (p.vx + ax) * 0.8; p.vy = (p.vy + ay) * 0.8;
+      p.x += p.vx; p.y += p.vy;
+    });
+  }
+
+  // ---------- Dibujo ----------
+  function draw(now) {
+    ctx.clearRect(0, 0, size, size);
+    var blink = now < blinkUntil;
+    var s = cell;
+    if (dir === 'lanza') {
+      // hilo que sale de la bobina hacia la izquierda
+      ctx.strokeStyle = COL.trama; ctx.lineWidth = Math.max(2, s * 0.22); ctx.beginPath();
+      var y0 = 20 * s + s / 2, xEnd = 7 * s + glide.x;
+      ctx.moveTo(0, y0 + Math.sin(now / 500) * s);
+      for (var x = 0; x <= xEnd; x += s) ctx.lineTo(x, y0 + Math.sin(now / 500 + x / (s * 3)) * s * (1 - x / (xEnd + 1)));
+      ctx.stroke();
+    }
+    parts.forEach(function (p) {
+      var moving = Math.abs(p.vx) + Math.abs(p.vy) > 1.4;
+      var x = p.x, y = p.y;
+      if (moving && (p.k === 'tejido' || p.k === 'carton' || p.k === 'casco' || p.k === 'perfo')) {
+        // un cruce suelto se ve como un hilo
+        var ang = Math.atan2(p.vy, p.vx);
+        ctx.strokeStyle = weftAt(p.r, p.c) ? COL.trama : COL.oscuro; ctx.lineWidth = s * 0.28;
+        ctx.beginPath(); ctx.moveTo(x - Math.cos(ang) * s * 0.6, y - Math.sin(ang) * s * 0.6); ctx.lineTo(x + Math.cos(ang) * s * 0.6, y + Math.sin(ang) * s * 0.6); ctx.stroke();
+        return;
+      }
+      switch (p.k) {
+        case 'barra': ctx.fillStyle = COL.oscuro; ctx.fillRect(x - s / 2, y - s * 0.3, s + 0.5, s * 0.6); break;
+        case 'urdimbre': case 'fleco': ctx.fillStyle = COL.oscuro; ctx.fillRect(x - s * 0.13, y - s / 2, s * 0.26, s + 0.5); break;
+        case 'tejido':
+          if (weftAt(p.r, p.c)) { ctx.fillStyle = COL.trama; ctx.fillRect(x - s / 2, y - s * 0.3, s + 0.5, s * 0.6); }
+          else { ctx.fillStyle = COL.oscuro; ctx.fillRect(x - s * 0.14, y - s / 2, s * 0.28, s + 0.5); }
+          break;
+        case 'carton': ctx.fillStyle = COL.papel; ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5); break;
+        case 'borde': ctx.fillStyle = COL.oscuro; ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5); break;
+        case 'perfo':
+          ctx.fillStyle = COL.papel; ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5);
+          if (weftAt(p.r, p.c)) { ctx.fillStyle = COL.trama; ctx.fillRect(x - s * 0.28, y - s * 0.38, s * 0.56, s * 0.76); }
+          break;
+        case 'casco': ctx.fillStyle = (p.r + p.c) % 2 ? COL.oscuro : COL.gris; ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5); break;
+        case 'bobina': ctx.fillStyle = COL.oscuro; ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5); ctx.fillStyle = COL.trama; ctx.fillRect(x - s / 2, y - s * 0.32, s + 0.5, s * 0.64); break;
+        case 'ojo':
+          ctx.fillStyle = dir === 'tarja' ? COL.oscuro : COL.papel;
+          ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5);
+          break;
+        case 'boca':
+          ctx.fillStyle = dir === 'tela' ? COL.papel : (dir === 'tarja' ? COL.papel : COL.gris);
+          if (dir !== 'lanza') ctx.fillRect(x - s / 2, y - s / 2, s + 0.5, s + 0.5);
+          break;
+      }
+    });
+    drawFace(now, blink);
+  }
+
+  function eyeBoxes() {
+    if (dir === 'tela') return [[12, 13, 4, 4], [24, 13, 4, 4]];
+    if (dir === 'tarja') return [[11, 13, 4, 4], [25, 13, 4, 4]];
+    return [[11, 14, 3, 3], [26, 14, 3, 3]];
+  }
+  function drawFace(now, blink) {
+    var s = cell, gx = dir === 'lanza' ? glide.x : 0;
+    var bob = (dir === 'tela' || dir === 'tarja') ? Math.sin(now / 1100) * s * 0.25 : 0;
+    var pupil = dir === 'tarja' ? COL.trama : COL.oscuro;
+    eyeBoxes().forEach(function (b) {
+      var x0 = b[0] * s + gx, y0 = b[1] * s + bob, w = b[2] * s, h = b[3] * s;
+      if (blink) {
+        ctx.fillStyle = dir === 'lanza' ? COL.gris : (dir === 'tarja' ? COL.papel : COL.trama);
+        ctx.fillRect(x0, y0, w, h);
+        ctx.fillStyle = dir === 'tarja' ? COL.oscuro : COL.oscuro;
+        ctx.fillRect(x0, y0 + h / 2 - s * 0.2, w, s * 0.4);
+        return;
+      }
+      var pw = dir === 'lanza' ? s : s * 2;
+      var px = x0 + (w - pw) / 2 + gaze.x * (w - pw) / 2, py = y0 + (h - pw) / 2 + gaze.y * (h - pw) / 2;
+      ctx.fillStyle = pupil; ctx.fillRect(px, py, pw, pw);
+    });
+    // boca según el ánimo
+    var m = dir === 'lanza' ? [17, 22, 6] : [17, 20, 6];
+    var mx = m[0] * s + gx, my = m[1] * s + bob, mw = m[2] * s;
+    ctx.fillStyle = dir === 'lanza' ? COL.papel : COL.oscuro;
+    if (dir !== 'lanza') { ctx.fillStyle = COL.papel; ctx.fillRect(mx, my, mw, s * 3); ctx.fillStyle = COL.oscuro; }
+    if (mood === 'feliz') {
+      ctx.fillRect(mx, my + s, s, s); ctx.fillRect(mx + s, my + s * 2, mw - 2 * s, s * 0.9); ctx.fillRect(mx + mw - s, my + s, s, s);
+    } else if (mood === 'duda') {
+      ctx.fillRect(mx + s, my + s * 1.5, mw - 2 * s, s * 0.8);
+    } else if (mood === 'oh') {
+      ctx.fillRect(mx + mw / 2 - s, my + s * 0.6, s * 2, s * 1.8);
+    }
+  }
+
+  // ---------- Bucle ----------
+  var raf = 0;
+  function loop(now) {
+    if (now > nextBlink) { blinkUntil = now + 140; nextBlink = now + 2800 + Math.random() * 2600; }
+    if (!reduce) step(now);
+    draw(now);
+    raf = requestAnimationFrame(loop);
+  }
+
+  // ---------- Frases que se escriben ----------
+  var typeTimer = null;
+  function say(text, then) {
+    clearInterval(typeTimer);
+    var el = document.getElementById('dice-txt');
+    if (reduce) { el.textContent = text; if (then) setTimeout(then, 1800); return; }
+    var i = 0; el.textContent = '';
+    typeTimer = setInterval(function () {
+      i++; el.textContent = text.slice(0, i);
+      if (i >= text.length) { clearInterval(typeTimer); if (then) setTimeout(then, 1700); }
+    }, 38);
+  }
+  function sayAll(list, i) { i = i || 0; say(list[i], i < list.length - 1 ? function () { sayAll(list, i + 1); } : null); }
+
+  // ---------- Interacción ----------
+  function setPointer(e) {
+    var r = escena.getBoundingClientRect();
+    pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top;
+    pointer.on = pointer.x > -40 && pointer.y > -40 && pointer.x < r.width + 40 && pointer.y < r.height + 40;
+    var cx = r.left + r.width / 2, cy = r.top + r.height * 0.4;
+    gaze.x = Math.max(-1, Math.min(1, (e.clientX - cx) / 260));
+    gaze.y = Math.max(-1, Math.min(1, (e.clientY - cy) / 260));
+    glide.tx = Math.max(-cell * 3, Math.min(cell * 3, (e.clientX - (r.left + r.width / 2)) / 8));
+    if (pointer.on && mood === 'feliz') mood = 'oh';
+    if (!pointer.on && mood === 'oh') mood = 'feliz';
+  }
+  window.addEventListener('pointermove', setPointer);
+  escena.addEventListener('pointerleave', function () { pointer.on = false; if (mood === 'oh') mood = 'feliz'; });
+
+  function reweave(text) {
+    pattern = text ? bitsOf(text) : null;
+    var now = performance.now();
+    parts.forEach(function (p) {
+      if (p.k !== 'tejido' && p.k !== 'perfo' && p.k !== 'casco') return;
+      if (reduce) return;
+      // una pasada que recorre las filas de arriba abajo
+      setTimeout(function () { p.vx += (p.r % 2 ? -1 : 1) * cell * 0.9; }, (p.r - 6) * 22);
+    });
+  }
+  var input = document.getElementById('frase'), deb = null;
+  input.addEventListener('input', function () {
+    clearTimeout(deb);
+    deb = setTimeout(function () { reweave(input.value.trim()); mood = 'oh'; setTimeout(function () { mood = 'feliz'; }, 600); }, 120);
+  });
+
+  var PIEZAS = [
+    { re: /(factur|cobr|pago|pagan|deud|atras|cartera)/i, n: 'Cobranza' },
+    { re: /(contrat|venc|p[oó]liza|garant|renov|licenc|certific|permiso)/i, n: 'Vencimientos' },
+    { re: /(reuni|acuerd|compromis|acta|pendient)/i, n: 'Acuerdos de reuniones' },
+    { re: /(report|gerenc|indicador|tablero|cierre|cifra)/i, n: 'Reporte gerencial' },
+    { re: /(reclam|queja|consult|whatsapp|client)/i, n: 'Atención' },
+    { re: /(gasto|vi[aá]tic|rendici|caja chica|reembols)/i, n: 'Gastos y viáticos' },
+    { re: /(compr|proveedor|cotiz|orden)/i, n: 'Compras' }
+  ];
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim() || input.placeholder;
+    if (!input.value.trim()) input.value = v;
+    reweave(v);
+    var hit = PIEZAS.find(function (x) { return x.re.test(v); });
+    if (!reduce) parts.forEach(function (p) { p.vy -= cell * (hit ? 1.6 : 0.4); });
+    if (hit) { mood = 'feliz'; say('Eso lo teje la pieza ' + hit.n + '. ¿Te muestro cómo?'); }
+    else { mood = 'duda'; say('Todavía no tengo esa pieza. Una persona del equipo lo ve contigo.'); }
+  });
+
+  function choose(d) {
+    dir = d; pattern = input.value.trim() ? bitsOf(input.value.trim()) : null; mood = 'feliz';
+    document.querySelectorAll('[data-dir]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-dir') === d)); });
+    build(true); sayAll(FRASES[d]);
+  }
+  document.querySelectorAll('[data-dir]').forEach(function (b) { b.addEventListener('click', function () { choose(b.getAttribute('data-dir')); }); });
+
+  resize(); build(false);
+  window.addEventListener('resize', function () { resize(); });
+  // primer cuadro completo y quieto; luego la entrada tejida
+  draw(performance.now());
+  requestAnimationFrame(function () { build(true); sayAll(FRASES[dir]); raf = requestAnimationFrame(loop); });
+})();
+</script>
