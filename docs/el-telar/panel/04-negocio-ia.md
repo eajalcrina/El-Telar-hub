@@ -6,17 +6,17 @@
 
 Mi elección es **servicio con software**: El Telar vende un proceso interno instalado y operado con una suscripción, y el software es el telar propio con el que lo instala más rápido cada vez. El cliente compra el proceso funcionando; el software queda del lado de El Telar como herramienta de producción.
 
-Satia eligió el camino opuesto. Vende la plataforma, cobra por registros y tokens, y deja la implementación a partners que cobran USD 500–3.000 por proyecto (página de partners de Satia). Ese modelo sirve a la micro y pequeña empresa que se arma su sistema sola. La empresa mediana que aparece en la validación del brief pidió otra cosa: diagnóstico, experiencia en su rubro, capacitación de mandos medios y uso responsable con sus trabajadores. Ninguna de esas cuatro peticiones se resuelve con una cuenta gratuita y créditos de bienvenida.
+Satia eligió el camino opuesto. Vende la plataforma, cobra por registros y tokens, y deja la implementación a partners que cobran USD 500–3.000 por proyecto (página de partners de Satia). Sirve a la pequeña empresa que se arma su sistema sola. La empresa mediana que aparece en la validación del brief pidió otra cosa: diagnóstico, experiencia en su rubro, capacitación de mandos medios y uso responsable con sus trabajadores. Ninguna de esas cuatro peticiones se resuelve con una cuenta gratuita y créditos de bienvenida.
 
-El servicio con software tiene además una ventaja económica concreta. La ronda 2 fijó que la palanca del margen son las horas de instalación, con la IA por debajo del 10 % del costo [supuesto del panel anterior]. Por eso conviene cobrar el resultado del proceso y usar el software para bajar las horas, y no ganar el margen en la reventa de tokens.
+La ronda 2 fijó que la palanca del margen son las horas de instalación, con la IA por debajo del 10 % del costo [supuesto del panel anterior]. Conviene cobrar el proceso y usar el software para bajar horas.
 
-Sobre la arquitectura de marca, desde el negocio recomiendo **marca independiente respaldada** durante los primeros 12–18 meses [supuesto]: El Telar factura con su nombre y conserva «un sistema de Redesign Lab» como respaldo. La condición de Claude Network Partner es de Redesign Lab, y una escisión temprana obligaría a renegociarla o a perderla. La escisión tiene sentido cuando El Telar tenga casos medidos propios y un canal que venda sin el fundador.
+Sobre la arquitectura de marca, desde el negocio recomiendo **marca independiente respaldada** durante los primeros 12–18 meses [supuesto]: El Telar factura con su nombre y conserva «un sistema de Redesign Lab» como respaldo. La condición de Claude Network Partner es de Redesign Lab, y una escisión temprana obligaría a renegociarla o a perderla. La escisión llega con casos medidos propios y un canal que venda sin el fundador.
 
 ## 2. Propuesta de valor única candidata
 
 > **Procesos que hoy viven en chats y Excels, tejidos en 30 días y medidos en dinero recuperado cada mes.**
 
-El cliente compra un proceso que deja de depender de la memoria de cinco personas. Lo mide en un acta mensual con un número en dinero: cartera vencida recuperada, multas evitadas, horas devueltas a la gerencia. Los 30 días vienen de la tesis («30 días para que funcione, 90 para que se quede»).
+El cliente lo mide en un acta mensual con un número en dinero, como cartera vencida recuperada o multas evitadas. Los 30 días vienen de la tesis («30 días para que funcione, 90 para que se quede»).
 
 ## 3. Modelo de ingresos
 
@@ -29,12 +29,12 @@ El cliente compra un proceso que deja de depender de la memoria de cinco persona
 | 2. Pieza de alto valor | Cobranza, flujo de caja o control de obra | Instalación USD 6.000–9.000 y USD 1.000–1.500 al mes [supuesto del panel anterior] |
 | 3. Tejido completo | Cuatro piezas o más sobre un mismo núcleo de datos | Precio decreciente por pieza y techo mensual publicado |
 
-El escalón 0 responde a lo que pidió la empresa de 70 personas. Cobrarlo filtra a quien solo quiere una charla gratis, y abonarlo a la instalación evita que se convierta en un producto de capacitación separado.
+El escalón 0 responde a lo que pidió la empresa de 70 personas, y abonarlo a la instalación evita que se vuelva un negocio de talleres.
 
 **Qué tomo de Satia:**
-- Lista de precios pública y sin cobro por usuario. Satia lo dice en su página («Satia does not gate features by price»), y en la mediana empresa elimina la discusión de cuántas licencias comprar.
+- Lista de precios pública y sin cobro por usuario. Satia lo publica («Satia does not gate features by price»).
 - Consumo de IA visible con tope pactado. Satia cobra USD 1,50 y USD 10 por millón de tokens de entrada y salida; El Telar debería incluir un volumen por pieza y cobrar el excedente al costo más un margen fijo [supuesto: 20 %].
-- Historial de auditoría como argumento de venta. Satia lo vende como extensión de USD 20 a 120 al mes; El Telar lo incluye porque responde a la preocupación por el uso responsable.
+- Historial de auditoría como argumento de venta. Satia cobra su extensión (USD 20 a 120 al mes); El Telar lo incluye porque responde al uso responsable.
 
 **Qué rechazo:**
 - Cobro por registros almacenados. En Satia es el eje del *lock-in* (dependencia del proveedor): cuantos más datos guardas, más pagas y más cuesta irte. Choca con el consenso de que el cliente puede llevarse su cerebro.
@@ -45,28 +45,28 @@ El escalón 0 responde a lo que pidió la empresa de 70 personas. Cobrarlo filtr
 
 Si los modelos se vuelven commodity, la defensa queda en tres activos. Conviene separarlos con claridad, porque el cliente es dueño de uno y El Telar de los otros dos.
 
-**La tarjeta perforada es de El Telar.** En el telar de Jacquard una tarjeta perforada fijaba el patrón y se podía reutilizar en cualquier tela. En El Telar, la tarjeta es la plantilla de proceso: entidades, reglas de validación, mensajes aprobados, evaluaciones y el guion de adopción. Cada instalación de la misma tarjeta baja las horas. La ronda 2 fijó la meta de 40–70 horas en la tercera instalación de una pieza [supuesto]. Un competidor puede copiar el modelo de IA en un día; para copiar una biblioteca de tarjetas probadas en 30 clientes de un rubro necesita esos 30 clientes.
+**La tarjeta perforada es de El Telar.** En el telar de Jacquard la tarjeta perforada fijaba un patrón reutilizable. Aquí la tarjeta es la plantilla de proceso: entidades, reglas de validación, mensajes aprobados, evaluaciones y el guion de adopción. Cada instalación de la misma tarjeta baja las horas. La ronda 2 fijó la meta de 40–70 horas en la tercera instalación de una pieza [supuesto]. Un competidor puede copiar el modelo de IA en un día; para copiar una biblioteca de tarjetas probadas en 30 clientes de un rubro necesita esos 30 clientes.
 
-**El tejido es del cliente.** El registro de eventos y los datos que cada pieza acumula forman la memoria de la empresa, y el cliente se los lleva en formato legible si se va. Esto refuerza el moat por otra vía: retiene por resultado y por costo de reentrenar a la gente, y le da a El Telar un argumento de venta que Satia no puede usar.
+**El tejido es del cliente.** El registro de eventos y los datos que cada pieza acumula forman la memoria de la empresa, y el cliente se los lleva en formato legible si se va. Retiene por resultado y por el costo de reentrenar a la gente, una promesa que el cobro por registros de Satia no incentiva.
 
-**El rubro es la trama de las tarjetas.** La palabra *texto* viene del latín *textus*, «trama, tejido» (DLE), y el texto que más vale es el del rubro: saber que en un contratista minero la póliza vence antes que el contrato vale más que cualquier *prompt*. Ese conocimiento vive en las tarjetas y es la respuesta directa a la pregunta de la validación: «¿tienen experiencia en mi rubro?».
+**El rubro es la trama de las tarjetas.** La palabra *texto* viene del latín *textus*, «trama, tejido» (DLE), y el texto que más vale es el del rubro: saber que en un contratista minero la póliza vence antes que el contrato vale más que cualquier *prompt* [ejemplo ilustrativo]. Ese conocimiento vive en las tarjetas y es la respuesta directa a la pregunta de la validación: «¿tienen experiencia en mi rubro?».
 
 ## 5. Canal y escala
 
-El Telar crece sin que el equipo fundador instale todo si las tarjetas pasan a manos de terceros con control de calidad. Propongo tres etapas:
+Propongo que las tarjetas pasen a terceros en tres etapas:
 
 1. **Meses 0–12 [supuesto]: el equipo fundador instala.** Ninguna tarjeta sale al canal antes de su tercera instalación propia con acta de resultado.
-2. **Meses 12–24 [supuesto]: tejedores certificados.** Consultoras contables, de gestión y de RR. HH. que ya atienden empresas medianas se certifican en tarjetas concretas, una por una. Cobran la instalación a un precio mínimo publicado y El Telar opera la suscripción.
+2. **Meses 12–24 [supuesto]: tejedores certificados.** Consultoras contables y de gestión que ya atienden empresas medianas se certifican tarjeta por tarjeta. Cobran la instalación a un precio mínimo publicado y El Telar opera la suscripción.
 3. **Después: los tejedores proponen tarjetas.** Una tarjeta nueva entra al catálogo tras pasar por tres clientes con acta, y su autor recibe una regalía sobre cada uso [supuesto: 5–10 % de la suscripción de esa pieza].
 
-Del programa de Satia tomo la comisión recurrente y el decaimiento. Satia paga 12 %, 16 % y 20 % sobre el consumo de los clientes del partner (página de partners), y según el análisis del 24-oct los puntos decaen un 1 % diario, con umbrales de 200 y 500 puntos. En El Telar la comisión se pagaría sobre la suscripción [supuesto: 15 %] y el nivel se mediría con piezas activas que pasaron su umbral de adopción, para que el tejedor gane más cuando sus procesos siguen funcionando un año después. Rechazo la cuota de admisión de USD 149 como fuente de ingreso: la certificación debe costar lo que cuesta formar y auditar, porque un canal que paga por entrar tiende a vender cualquier cosa para recuperar la cuota.
+Del programa de Satia tomo la comisión recurrente y el decaimiento. Satia paga 12 %, 16 % y 20 % sobre el consumo de los clientes del partner (página de partners), y según el análisis del 24-oct los puntos decaen un 1 % diario, con umbrales de 200 y 500 puntos. En El Telar la comisión se pagaría sobre la suscripción [supuesto: 15 %] y el nivel se mediría con piezas activas que pasaron su umbral de adopción, para que el tejedor gane más cuando sus procesos siguen funcionando un año después. Rechazo la cuota de admisión de USD 149 como ingreso: la certificación cobra lo que cuesta formar y auditar.
 
 ## 6. Riesgos
 
 - **La escalera sin peldaños.** Si menos de la mitad de los clientes pasa a la segunda pieza, el cliente de entrada queda en punto de equilibrio (cálculo de la ronda 2, con supuestos).
-- **Que el escalón 0 se coma al negocio.** La capacitación vende fácil y tiene margen bajo; el equipo puede terminar dando talleres en lugar de instalar.
-- **Canal que degrada la marca.** Un tejedor que instala mal una tarjeta daña el caso de todos; la certificación por tarjeta y la auditoría de la primera instalación son la defensa.
-- **Dependencia del proveedor de modelo.** El estatus de Claude Network Partner es una ventaja comercial y también una concentración; las tarjetas deben poder correr sobre otro modelo.
+- **Que el escalón 0 se coma al negocio.** La capacitación vende fácil y deja poco margen.
+- **Canal que degrada la marca.** Un tejedor que instala mal daña el caso de todos; se audita su primera instalación de cada tarjeta.
+- **Dependencia del proveedor de modelo.** Las tarjetas deben poder correr sobre otro modelo además de Claude.
 
 ## 7. Tres preguntas para el fundador
 
