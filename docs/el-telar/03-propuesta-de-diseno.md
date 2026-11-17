@@ -111,3 +111,32 @@ El fundador descartó el personaje en forma de tela y propuso este camino.
 - **Fondo oscuro**, para que los colores resalten. Con movimiento reducido se ve la tela completa y quieta.
 
 Fuente: `prototipo-lanzadera.html`. Pendiente: decidir qué dibuja la lanzadera, si un motivo, el logotipo o solo rayas de color.
+
+## Camino E, «Cabezal que arma el cerebro» (evolución del fundador, 17-nov-2026)
+
+Reemplaza la etiqueta crema del camino D, que tapaba la trama. El concepto cambia de «memoria» a **construir el cerebro de la organización**: conectar las tramas que ya existen y convertirlas en bloques que se conectan y funcionan.
+
+**La trama.**
+- Fondo blanco.
+- Los hilos son tiras de código en tonos de gris: letras, números, ceros y unos, cubos y rombos.
+- Entran desde todos los lados, en curvas, y se apartan del cursor.
+- Se apagan al acercarse al título, que queda limpio al centro y sin tarjeta.
+
+**El cabezal.**
+- Viaja a una zona (primero arriba a la izquierda) y se mueve como el cabezal de una impresora: un paso por celda, de ida y vuelta en cada fila.
+- En cada paso atrapa un código de las tiras, que vuela a su celda.
+- Cada fila del bloque mezcla un tipo de código distinto, y así combina las líneas.
+- Al terminar, el bloque se enmarca, recibe un nombre de proceso y el cabezal pasa a la zona siguiente.
+
+**Los bloques y sus conexiones.**
+- Seis bloques en escritorio y cuatro en celular, alrededor del título.
+- Cada bloque nuevo se conecta con el anterior con una línea en ángulo recto, y por las conexiones viajan pulsos rojos: el cerebro funcionando.
+- Las conexiones que cruzarían el título lo rodean por el borde.
+
+**Lo que escribe el visitante.** Su frase entra como una tira de texto, la pieza correspondiente da nombre al primer bloque y el cabezal vuelve a empezar.
+
+**Ciclo.** Con el cerebro completo, se mantiene unos segundos y se vuelve a armar. Con movimiento reducido se ve el cerebro completo y quieto.
+
+Fuente: `prototipo-cerebro.html`. Pendientes:
+- el wording, con el giro de memoria a cerebro;
+- si el cabezal lleva un personaje o se queda como objeto.
