@@ -1,0 +1,307 @@
+<!-- Fuente del prototipo. La tipografía Mluvka se incrusta al publicar (marcador __MLUVKA__); sin ella usa la de respaldo. -->
+<title>El Telar, la lanzadera</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Pantalla única: hilos sueltos de colores por toda la página; una lanzadera los ordena en una banda tejida al centro, bajo la etiqueta con el título. */
+@font-face { font-family: 'Mluvka'; src: url(data:font/woff2;base64,__MLUVKA__) format('woff2'); font-weight: 400; font-display: swap; }
+:root {
+  --fondo: #0F0E0D;
+  --etiqueta: #F6F3EE;
+  --tinta: #121110;
+  --tinta-2: #4D4A46;
+  --sobre-oscuro: #F6F3EE;
+  --sobre-oscuro-2: #B9B4AC;
+  --trama: #F32769;
+  --trama-osc: #C4126A;
+  --sans: 'Mluvka', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--fondo); color: var(--sobre-oscuro); font-family: var(--sans); -webkit-font-smoothing: antialiased; overflow: hidden; }
+#telar { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.capa { position: relative; z-index: 1; height: 100%; display: grid; grid-template-rows: auto 1fr auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); pointer-events: none; }
+.capa > * { pointer-events: auto; }
+nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; max-width: 1240px; width: 100%; margin: 0 auto; }
+.marca { margin: 0; background: rgba(15,14,13,0.82); backdrop-filter: blur(6px); border-radius: 999px; padding: 10px 16px; font-size: 22px; letter-spacing: -0.02em; line-height: 1; }
+.marca span { color: var(--trama); }
+.nav-der { display: flex; align-items: center; gap: 20px; background: rgba(15,14,13,0.82); backdrop-filter: blur(6px); border-radius: 999px; padding: 4px 4px 4px 20px; }
+.nav-der a { color: var(--sobre-oscuro-2); text-decoration: none; font-size: 15px; }
+.nav-der a:hover { color: var(--sobre-oscuro); }
+.nav-der .cta { color: var(--tinta); background: var(--etiqueta); border-radius: 999px; padding: 10px 18px; font-size: 14px; }
+@media (max-width: 640px) { .nav-der a:not(.cta) { display: none; } .nav-der { padding: 4px; } }
+
+main { display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; pointer-events: none; min-width: 0; }
+.etiqueta {
+  pointer-events: auto; position: relative; width: 100%; max-width: 640px; text-align: center;
+  background: var(--etiqueta); color: var(--tinta); padding: 34px clamp(20px, 4vw, 44px) 30px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+}
+/* costura de etiqueta tejida */
+.etiqueta::before { content: ""; position: absolute; inset: 8px; border: 1px dashed rgba(18,17,16,0.28); pointer-events: none; }
+.rotulo { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tinta-2); margin: 0; }
+h1 { font-size: clamp(30px, 4.6vw, 54px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 400; margin: 14px 0 0; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--trama-osc); }
+.llana { font-size: clamp(15px, 1.5vw, 18px); line-height: 1.5; color: var(--tinta-2); margin: 14px auto 0; max-width: 42ch; }
+form { margin-top: 20px; }
+.fila { display: flex; gap: 6px; padding: 5px; border: 1px solid rgba(18,17,16,0.2); border-radius: 999px; background: #FFFFFF; }
+.fila:focus-within { border-color: var(--tinta); }
+.fila input { flex: 1; min-width: 0; border: 0; background: transparent; height: 44px; padding: 0 16px; font-family: var(--sans); font-size: 16px; color: var(--tinta); }
+.fila input:focus { outline: none; }
+.fila button { border: 0; border-radius: 999px; background: var(--trama); color: #FFFFFF; font-family: var(--sans); font-size: 16px; padding: 0 22px; cursor: pointer; }
+.fila button:hover { background: var(--trama-osc); }
+.fila button:focus-visible { outline: 2px solid var(--tinta); outline-offset: 2px; }
+.respuesta { min-height: 22px; margin: 12px 0 0; font-size: 15px; color: var(--tinta-2); }
+.respuesta b { font-weight: 400; color: var(--tinta); }
+
+.pie { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; max-width: 1240px; width: 100%; margin: 0 auto; padding-block: 14px 18px; }
+.motivos { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(15,14,13,0.75); border: 1px solid rgba(246,243,238,0.16); backdrop-filter: blur(6px); }
+.motivos span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sobre-oscuro-2); padding: 8px 10px 8px 12px; }
+.motivos button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; border: 0; border-radius: 999px; background: transparent; color: var(--sobre-oscuro-2); padding: 8px 12px; cursor: pointer; }
+.motivos button[aria-pressed="true"] { background: var(--etiqueta); color: var(--tinta); }
+.motivos button:focus-visible { outline: 2px solid var(--trama); outline-offset: 2px; }
+.firma { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sobre-oscuro-2); margin: 0; background: rgba(15,14,13,0.75); padding: 8px 12px; border-radius: 999px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<canvas id="telar" aria-hidden="true"></canvas>
+<div class="capa">
+  <nav aria-label="Principal">
+    <p class="marca">El Telar<span>.</span></p>
+    <div class="nav-der">
+      <a href="#">Cómo funciona</a>
+      <a href="#">Piezas</a>
+      <a class="cta" href="#">Conversemos</a>
+    </div>
+  </nav>
+  <main>
+    <section class="etiqueta" aria-labelledby="titulo">
+      <p class="rotulo">El Telar, IA para empresas</p>
+      <h1 id="titulo">Escribe lo que tu empresa olvida. <em>Te lo devolvemos tejido.</em></h1>
+      <p class="llana">Capacitamos a tu equipo e instalamos procesos con IA, uno por uno.</p>
+      <form id="form" autocomplete="off">
+        <label class="sr" for="frase">¿Qué se le escapa a tu empresa cada semana?</label>
+        <div class="fila">
+          <input id="frase" maxlength="60" placeholder="Las facturas que nadie cobra a tiempo">
+          <button type="submit">Tejer</button>
+        </div>
+      </form>
+      <p class="respuesta" id="respuesta" aria-live="polite">Lo que escribas se teje en la tela.</p>
+    </section>
+  </main>
+  <div class="pie">
+    <div class="motivos" role="group" aria-label="Motivo del tejido">
+      <span>Motivo</span>
+      <button type="button" data-motivo="rombos" aria-pressed="true">Rombos</button>
+      <button type="button" data-motivo="rayas" aria-pressed="false">Rayas</button>
+      <button type="button" data-motivo="frase" aria-pressed="false">Tu frase</button>
+    </div>
+    <p class="firma">Prototipo sin publicar. Un sistema de Redesign Lab</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var PALETA = ['#F32769', '#FF8A3D', '#F2C14E', '#1FA187', '#3E7BFA', '#9B8CE0', '#E9E4DA'];
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cv = document.getElementById('telar'), ctx = cv.getContext('2d');
+  var W = 0, H = 0, dpr = 1, gap = 14, rowH = 9;
+  var threads = [], band = { top: 0, bottom: 0, rows: 0 }, woven = [], row = 0;
+  var shuttle = { x: 0, dir: -1, t: 0 }, PASS = 520; // ms por pasada
+  var motivo = 'rombos', fraseBits = null, ciclo = 0, estado = 'tejiendo', pausa = 0;
+  var pointer = { x: -9999, y: -9999 };
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    gap = W < 640 ? 11 : 14;
+    var n = Math.ceil(W / gap) + 1;
+    threads = [];
+    for (var i = 0; i < n; i++) {
+      threads.push({
+        x: i * gap + gap / 2,
+        color: PALETA[(i * 5 + (i % 3)) % PALETA.length],
+        amp: gap * (1.5 + Math.random() * 4.5),
+        ph: Math.random() * 6.28, f: 0.004 + Math.random() * 0.01
+      });
+    }
+    var bh = Math.round(H * 0.62 / rowH) * rowH;
+    band.top = Math.round((H - bh) / 2); band.bottom = band.top + bh; band.rows = bh / rowH;
+    reiniciar(reduce);
+  }
+
+  function bitsOf(text) {
+    var out = [], enc = new TextEncoder().encode(text);
+    for (var i = 0; i < enc.length; i++) out.push(enc[i].toString(2).padStart(8, '0'));
+    return out;
+  }
+
+  // ¿En este cruce se ve la trama (true) o la urdimbre (false)? Así funciona un telar de Jacquard.
+  function trama(r, c) {
+    if (motivo === 'rayas') return (r + c) % 2 === 0;
+    if (motivo === 'frase' && fraseBits && fraseBits.length) {
+      var b = fraseBits[r % fraseBits.length], j = c % 16; return b[j < 8 ? j : 15 - j] === '1';
+    }
+    // rombos: el centro y un anillo muestran la trama de color; el resto es tafetán
+    var size = 16, cx = Math.abs(c % size - size / 2 + 0.5), cy = Math.abs(r % size - size / 2 + 0.5) * 1.1;
+    var d = cx + cy;
+    if (d < 3.2) return true;
+    if (d < 4.6) return false;
+    if (d < 6.0) return true;
+    return (r + c) % 2 === 0;
+  }
+  function colorFila(r) {
+    if (motivo === 'rayas') return PALETA[Math.floor(r / 4) % PALETA.length];
+    if (motivo === 'frase') return '#F32769';
+    return PALETA[(Math.floor(r / 14) + ciclo) % PALETA.length];
+  }
+
+  function tejerFila(r) {
+    var cells = [], y = band.top + r * rowH, wc = colorFila(r);
+    for (var c = 0; c < threads.length; c++) cells.push(trama(r, c) ? wc : null);
+    woven[r] = { y: y, weft: wc, cells: cells };
+  }
+  function reiniciar(completo) {
+    woven = []; row = 0; shuttle.dir = -1; shuttle.x = W + 60; shuttle.t = 0; estado = 'tejiendo';
+    if (completo) { for (var r = 0; r < band.rows; r++) tejerFila(r); row = band.rows; estado = 'lleno'; }
+  }
+
+  // ---------- Dibujo ----------
+  function caos(t, y) {
+    // cuánto se desordena un hilo a la altura y: cero dentro de la parte ya tejida
+    var tejidoAbajo = band.top + row * rowH;
+    if (row > 0 && y >= band.top && y <= tejidoAbajo) return 0;
+    var d = y < band.top ? band.top - y : y - tejidoAbajo;
+    if (row === 0 && y >= band.top) d = y - band.top;
+    return Math.min(1, d / 90);
+  }
+  function drawThreads(t) {
+    var step = 10;
+    ctx.lineWidth = 1.6; ctx.lineCap = 'round';
+    threads.forEach(function (th, i) {
+      ctx.strokeStyle = th.color; ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      for (var y = -20; y <= H + 20; y += step) {
+        var k = caos(t, y);
+        var off = k * th.amp * (Math.sin(y * th.f + th.ph + t * 0.0005) + 0.55 * Math.sin(y * th.f * 2.3 - i * 0.7 + t * 0.0009));
+        var x = th.x + off;
+        var dx = x - pointer.x, dy = y - pointer.y, d2 = dx * dx + dy * dy;
+        if (k > 0 && d2 < 14000) { var dd = Math.sqrt(d2) || 1; x += dx / dd * (1 - dd / 118) * 40 * k; }
+        if (y === -20) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+  }
+  function drawWoven() {
+    for (var r = 0; r < woven.length; r++) {
+      var w = woven[r]; if (!w) continue;
+      for (var c = 0; c < threads.length; c++) {
+        var x = threads[c].x;
+        if (w.cells[c]) { ctx.fillStyle = w.cells[c]; ctx.fillRect(x - gap / 2, w.y + 1, gap + 0.5, rowH - 2); }
+        else { ctx.fillStyle = threads[c].color; ctx.fillRect(x - gap * 0.2, w.y, gap * 0.4, rowH + 0.5); }
+      }
+    }
+  }
+  function drawShuttle(t) {
+    if (estado !== 'tejiendo') return;
+    var y = band.top + row * rowH + rowH / 2, x = shuttle.x;
+    // hilo que va dejando en la pasada actual
+    var desde = shuttle.dir < 0 ? W : 0;
+    ctx.strokeStyle = colorFila(row); ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(desde, y); ctx.lineTo(x, y); ctx.stroke();
+    // la lanzadera
+    ctx.save(); ctx.translate(x, y); ctx.scale(shuttle.dir < 0 ? -1 : 1, 1);
+    ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 6;
+    ctx.fillStyle = '#F6F3EE';
+    ctx.beginPath(); ctx.moveTo(-58, 0); ctx.quadraticCurveTo(-30, -15, 0, -15); ctx.quadraticCurveTo(30, -15, 58, 0); ctx.quadraticCurveTo(30, 15, 0, 15); ctx.quadraticCurveTo(-30, 15, -58, 0); ctx.fill();
+    ctx.shadowColor = 'transparent';
+    ctx.fillStyle = '#121110'; ctx.fillRect(-20, -6, 40, 12);
+    ctx.fillStyle = colorFila(row);
+    for (var k = -16; k <= 14; k += 5) ctx.fillRect(k, -5, 3, 10);
+    ctx.restore();
+  }
+
+  // ---------- Bucle ----------
+  var last = 0;
+  function frame(t) {
+    var dt = last ? Math.min(50, t - last) : 16; last = t;
+    if (!reduce) {
+      if (estado === 'tejiendo') {
+        shuttle.t += dt;
+        var p = Math.min(1, shuttle.t / PASS), e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        shuttle.x = shuttle.dir < 0 ? (W + 60) - e * (W + 120) : -60 + e * (W + 120);
+        if (p >= 1) {
+          tejerFila(row); row++; shuttle.dir *= -1; shuttle.t = 0;
+          if (row >= band.rows) { estado = 'lleno'; pausa = t + 4200; }
+        }
+      } else if (estado === 'lleno' && t > pausa) {
+        estado = 'soltando';
+      } else if (estado === 'soltando') {
+        // la tela se suelta de abajo hacia arriba y vuelve a empezar con otro color
+        row = Math.max(0, row - 2); woven.length = row;
+        if (row === 0) { ciclo++; reiniciar(false); }
+      }
+    }
+    ctx.clearRect(0, 0, W, H);
+    drawThreads(t);
+    drawWoven();
+    drawShuttle(t);
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', function (e) { pointer.x = e.clientX; pointer.y = e.clientY; });
+  window.addEventListener('pointerleave', function () { pointer.x = pointer.y = -9999; });
+
+  function setMotivo(m) {
+    motivo = m;
+    document.querySelectorAll('[data-motivo]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-motivo') === m)); });
+    // las filas que siguen salen con el motivo nuevo; las ya tejidas se quedan
+    if (reduce) reiniciar(true);
+  }
+  document.querySelectorAll('[data-motivo]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var m = b.getAttribute('data-motivo');
+      if (m === 'frase' && !fraseBits) fraseBits = bitsOf(document.getElementById('frase').value.trim() || 'El Telar');
+      setMotivo(m);
+    });
+  });
+
+  var PIEZAS = [
+    { re: /(factur|cobr|pago|pagan|deud|atras|cartera)/i, n: 'Cobranza' },
+    { re: /(contrat|venc|p[oó]liza|garant|renov|licenc|certific|permiso)/i, n: 'Vencimientos' },
+    { re: /(reuni|acuerd|compromis|acta|pendient)/i, n: 'Acuerdos de reuniones' },
+    { re: /(report|gerenc|indicador|tablero|cierre|cifra)/i, n: 'Reporte gerencial' },
+    { re: /(reclam|queja|consult|whatsapp|client)/i, n: 'Atención' },
+    { re: /(gasto|vi[aá]tic|rendici|caja chica|reembols)/i, n: 'Gastos y viáticos' },
+    { re: /(compr|proveedor|cotiz|orden)/i, n: 'Compras' }
+  ];
+  var input = document.getElementById('frase');
+  input.addEventListener('input', function () {
+    var v = input.value.trim();
+    if (v) { fraseBits = bitsOf(v); setMotivo('frase'); }
+  });
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim() || input.placeholder;
+    if (!input.value.trim()) input.value = v;
+    fraseBits = bitsOf(v); setMotivo('frase');
+    var hit = PIEZAS.find(function (x) { return x.re.test(v); });
+    var out = document.getElementById('respuesta');
+    out.innerHTML = '';
+    if (hit) { out.append('Eso lo teje la pieza '); var b = document.createElement('b'); b.textContent = hit.n; out.append(b, '. Te mostramos cómo en 30 minutos.'); }
+    else out.textContent = 'Todavía no tenemos esa pieza. Una persona del equipo lo revisa contigo.';
+    if (!reduce && estado !== 'tejiendo') { estado = 'soltando'; }
+  });
+
+  resize();
+  // primer cuadro: unas filas ya tejidas para que la idea se lea sin esperar
+  if (!reduce) { for (var r = 0; r < 6; r++) tejerFila(r); row = 6; shuttle.dir = 1; shuttle.x = -60; }
+  requestAnimationFrame(frame);
+})();
+</script>

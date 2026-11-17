@@ -95,3 +95,19 @@ En la categoría, la respuesta de la IA suele ser un chat o una mascota. Aquí e
 
   El director creativo recomienda Tela.
 - **Prototipo comparativo:** artefacto privado «El Telar, personaje central». Fuente en `prototipo-personajes.html`.
+
+## Camino D, «Lanzadera que ordena» (idea del fundador, 17-nov-2026)
+
+El fundador descartó el personaje en forma de tela y propuso este camino.
+
+- **Toda la pantalla** es un enredo de hilos de colores que se mueven solos y se apartan del cursor.
+- **Una lanzadera** cruza la pantalla de lado a lado. En cada pasada deja una fila de trama: los hilos por donde pasa se enderezan y forman una banda tejida al centro.
+- **El título** va al centro, en una etiqueta tejida con costura, siempre legible.
+- **El motivo de la tela cambia:**
+  - **Rombos:** lógica de Jacquard, donde cada cruce muestra la trama o la urdimbre.
+  - **Rayas.**
+  - **Tu frase:** la tela se teje con los bits de lo que escribe el visitante.
+- **El ciclo:** cuando la banda se llena, la tela se suelta y la lanzadera vuelve a tejer con otros colores.
+- **Fondo oscuro**, para que los colores resalten. Con movimiento reducido se ve la tela completa y quieta.
+
+Fuente: `prototipo-lanzadera.html`. Pendiente: decidir qué dibuja la lanzadera, si un motivo, el logotipo o solo rayas de color.
