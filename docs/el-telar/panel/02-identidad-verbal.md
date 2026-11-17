@@ -4,42 +4,42 @@
 
 ## 1. El concepto desarrollado
 
-Las dos anclas verificadas sostienen todo el sistema. En su Nota A (1843), Ada Lovelace escribió que la Máquina Analítica «teje patrones algebraicos tal como el telar de Jacquard teje flores y hojas». Y *texto* viene del latín *textus*, «trama, tejido», con la misma raíz *texere* que *contexto* (DLE). La IA trabaja con texto, así que la marca habla del telar sin forzar la analogía.
+En su Nota A (1843), Ada Lovelace escribió que la Máquina Analítica «teje patrones algebraicos tal como el telar de Jacquard teje flores y hojas». Y *texto* viene del latín *textus*, «trama, tejido», con la misma raíz *texere* que *contexto* (DLE). La IA trabaja con texto, así que la marca habla del telar sin forzar la analogía.
 
 | Oficio | IA | Qué significa en el producto |
 |---|---|---|
-| Urdimbre (hilos fijos que se tensan antes de tejer) | Esquema de datos | El núcleo único: persona, cliente, proveedor, obra o sede, documento, compromiso, evento. Igual para todos los clientes (consenso 3 de la ronda 2) |
-| Trama (hilo que cruza la urdimbre en cada pasada) | Evento, conexión entre datos | Cada pago, vencimiento o acuerdo que entra cruza varias entidades y queda registrado sin borrarse |
-| Hilo | Texto, token | Cada fuente suelta: un chat, un Excel, una exportación fechada. Y, en el catálogo, cada proceso instalado |
-| Tejido | Red de conexiones | La memoria de la empresa cliente, con su nombre. Lo que se lleva si se va |
+| Urdimbre (hilos fijos que se tensan antes de tejer [por verificar]) | Esquema de datos | El núcleo de entidades fijas, igual para todos los clientes (consenso 3, ronda 2) |
+| Trama (hilo que cruza la urdimbre en cada pasada [por verificar]) | Conexiones entre datos | Cada evento que entra cruza varias entidades y nunca se borra |
+| Hilo | Texto, token | Cada fuente suelta (chat, Excel, exportación) y, en el catálogo, cada proceso |
+| Tejido | Red neuronal, como imagen de nodos conectados | La memoria del cliente, a su nombre y exportable |
 | Telar de Jacquard | Motor que ejecuta instrucciones | El Telar, nuestro sistema y método |
-| Tarjeta perforada | Plantilla, kit cerrado | La receta repetible de cada proceso, con un máximo de 20 % a medida |
-| Patrón | Patrón detectado | Un hallazgo con dato: «estos 6 clientes pagan entre el día 45 y el 60» |
-| Lanzadera | Asistente con una tarea | El asistente de WhatsApp que lleva y trae mensajes de un solo proceso |
-| Nudo | Aprobación humana | El punto donde una persona revisa y firma antes de que algo salga |
-| Contexto | Ventana de contexto | Lo que el asistente recibe del tejido antes de responder |
-| Entrenamiento | Entrenamiento de modelos | Uso interno solamente (ver sección 5) |
+| Tarjeta perforada | Plantilla, kit cerrado | La receta repetible de cada proceso, con máximo 20 % a medida |
+| Patrón | Patrón detectado | Un hallazgo con dato, por ejemplo qué clientes pagan siempre después del día 45 [supuesto] |
+| Lanzadera | Asistente con una tarea | El asistente de WhatsApp de un solo proceso |
+| Nudo | Aprobación humana | Donde una persona aprueba antes de que algo salga |
+| *Texere*, raíz común de texto y contexto | Contexto | Lo que el asistente recibe del tejido antes de responder |
+| Aprendiz del taller [por verificar] | Entrenamiento | Hacia afuera, solo la capacitación de personas; el sistema se configura (ver sección 5) |
 
-El telar explica la memoria de la empresa y deja fuera cómo funciona el modelo, porque decir que una red neuronal «es» un tejido sería técnicamente flojo. Que los proveedores no entrenen con datos del cliente depende de cada contrato [por verificar].
+El telar explica la memoria de la empresa, y la red neuronal queda como imagen, sin afirmar que funcione como un tejido. Que los proveedores no entrenen con datos del cliente depende de cada contrato [por verificar].
 
 ## 2. Propuesta de valor única candidata
 
 **Tejemos con tu equipo la memoria de tu empresa, proceso por proceso, y el tejido es tuyo aunque te vayas.**
 
-Son 20 palabras. Satia no puede decir dos de sus partes: la instalación con la gente del cliente y la propiedad portable del tejido. En las tres primeras reuniones, anota cuál repiten los gerentes sin ayuda.
+Satia no puede decir dos de sus partes: la instalación con la gente del cliente y la propiedad portable del tejido. En las tres primeras reuniones, anota cuál repiten los gerentes sin ayuda.
 
 ## 3. Frase de campaña y alternativas
 
 **Principal:** *Tejemos la memoria de tu empresa con los hilos que ya tiene.*
 
 Alternativas:
-1. *Tus chats, tus Excels y tus correos, tejidos en una sola memoria a tu nombre.*
-2. *En 1843 Ada Lovelace comparó la computadora con un telar. Hoy montamos uno en tu empresa.* (Para charlas y prensa, donde hay espacio para contar la historia.)
+1. *Tus chats y tus Excels, tejidos en una sola memoria a tu nombre.*
+2. *En 1843 Ada Lovelace comparó la Máquina Analítica con el telar de Jacquard, y hoy montamos un telar en tu empresa.*
 3. *Cada proceso que tejemos queda en la memoria de tu empresa y a tu nombre.*
 
 Prueba la principal contra la alternativa 1 en el encabezado de eltelarhub.com durante cuatro semanas.
 
-## 4. Manifiesto (104 palabras)
+## 4. Manifiesto (107 palabras)
 
 > *Texto* viene del latín *textus*, que significa tejido. Tu empresa produce texto todos los días: chats de cobranza, correos con proveedores, actas de reunión y Excels con fechas de vencimiento. Cada uno es un hilo suelto, y casi todo lo que significan vive en la cabeza de pocas personas.
 >
@@ -51,27 +51,28 @@ Prueba la principal contra la alternativa 1 en el encabezado de eltelarhub.com d
 
 | Cosa | Nombre | Uso |
 |---|---|---|
-| Nuestro sistema y método | **El Telar** | Sitio, contratos, metodología |
-| La instancia de cada empresa | **Tejido [Empresa]**, por ejemplo «Tejido Constructora Andes» | Tablero, exportaciones, contrato de propiedad |
+| Sistema y método | **El Telar** | Sitio, contratos |
+| La instancia de cada empresa | **Tejido [Empresa]**, por ejemplo «Tejido Constructora Andes» | Tablero, exportaciones |
 | Cada proceso automatizado | **Hilo**, con nombre funcional: Hilo Cobra, Hilo Vence, Hilo Caja | Lista de precios, tablero |
-| El asistente de cada hilo | Nombre funcional del hilo («Cobra te recuerda…») | WhatsApp, con plantillas aprobadas |
+| Asistente de cada hilo | Nombre funcional («Cobra te recuerda…») | WhatsApp, plantillas aprobadas |
 | La vista del gerente | **Tablero del tejido** | Solo hilos activos |
-| Instalar | **Tejer** («tejemos el hilo de cobranza en seis semanas»); en contratos, «instalar» | Ventas, propuestas |
-| Capacitación de mandos medios | **Taller del telar** | Lo que pidió la empresa de ≈70 personas |
+| Instalar | **Tejer** («tejemos el hilo de cobranza con tu equipo»); en contratos, «instalar» | Ventas, propuestas |
 
-**Personaje:** recomiendo no tener uno. Sati invita a «pídele lo que quieras», y la ronda 2 cerró que cada asistente tiene una sola tarea. El objeto visible es el tejido en el tablero, que suma un hilo por proceso activo.
+**Personaje:** recomiendo no tener uno. Sati invita a pedir cualquier cosa, y la ronda 2 fijó una sola tarea por asistente. El objeto visible es el tejido en el tablero, que suma un hilo por proceso activo.
 
-**Palabras del oficio que no conviene usar con clientes:**
+**Doble uso de «hilo»:** en el relato, los hilos sueltos son las fuentes (chats, Excels); en el catálogo, un Hilo es el proceso que los ordena y va siempre con mayúscula y nombre funcional.
+
+**Palabras del oficio que no conviene usar con clientes** (segundos sentidos por confirmar en el DLE [por verificar]):
 - *Patrón*, solo: en Latinoamérica es el empleador, y se lee mal al hablar de uso responsable con trabajadores. Úsalo con complemento: «patrón de pago».
 - *Trama*, *tramar*, *urdir*: significan también conspirar. Quedan en documentos de método.
 - *Nudo*: en la oficina es un problema trabado. Para la aprobación humana di «aprobación».
-- *Lanzadera*: nadie la reconoce fuera del oficio, y en España es el nombre de una aceleradora conocida [por verificar].
+- *Lanzadera*: poco conocida fuera del oficio; en España nombra una aceleradora [por verificar].
 - *Entrenar*: el gerente entiende que sus datos alimentan a la IA, y choca con la capacitación. Para la gente, «taller»; para el sistema, «configurar».
 - *Token*: tecnicismo de facturación.
 
 ## 6. Tono
 
-El Telar habla como una jefa de operaciones que conoce el oficio: frases cortas, cifras con fecha, verbos de trabajo manual (tejer, cruzar, revisar) y tuteo. Usa tres palabras del telar hacia afuera: telar, tejido e hilo. Las demás quedan para el método.
+El Telar habla como una jefa de operaciones: frases cortas, cifras con fecha, verbos manuales como tejer o revisar y tuteo. Hacia afuera usa solo telar, tejido e hilo.
 
 | Correcto | Incorrecto |
 |---|---|
@@ -79,16 +80,16 @@ El Telar habla como una jefa de operaciones que conoce el oficio: frases cortas,
 | «Tu tejido tiene 3 hilos activos. El de vencimientos evitó 2 multas en octubre.» | «No es un software, es el tejido vivo de tu empresa.» |
 | «Antes de tejer el segundo hilo, mostramos el acta del primero en dinero.» | «Más que automatizar, urdimos el futuro de tu organización.» |
 
-Las cifras de la columna correcta son ilustrativas [supuesto]. Usa esta tabla como lista de control en cada pieza de copy.
+Las cifras correctas son ilustrativas [supuesto]. Usa la tabla como lista de control del copy.
 
 ## 7. Riesgos y preguntas para el fundador
 
 **Riesgos:**
 - **Artesanía lenta.** «Telar» puede sonar a hecho a mano y caro; lo compensan precios públicos y plazos fijos por hilo.
-- **Apropiación cultural.** Con un primer cliente en el interior del Perú, tentará usar textiles andinos o quipus [por verificar]. Recomiendo dejar fuera esa iconografía; si se usa, con colaboración y crédito a quienes tejen.
-- **Exceso de metáfora.** Límite de tres palabras del oficio en copy externo.
+- **Apropiación cultural.** Tras la reunión exploratoria en el interior del Perú, tentará usar textiles andinos o quipus [por verificar]. Recomiendo dejar fuera esa iconografía; si se usa, con colaboración y crédito a quienes tejen.
+- **«Hilo» con dos sentidos.** Si el gerente confunde fuente y proceso, se reserva «hilo suelto» solo para el manifiesto.
 - ***Tejido* en medicina.** «Tejido Andes» puede leerse como biológico; pruébalo en voz alta con dos clientes.
-- **Registro de marca.** Disponibilidad de «El Telar» en INDECOPI, SIC, IMPI e INAPI en la clase de software [por verificar].
+- **Registro de marca.** «El Telar» en INDECOPI, SIC, IMPI e INAPI, clase de software [por verificar].
 
 **Arquitectura de marca:** respaldada, con «un sistema de Redesign Lab» en el pie y en contratos, hasta tener casos medidos propios. **Producto o servicio:** vocabulario de producto (hilos con precio fijo, tablero, exportación) para un servicio instalado, como plantea la tesis.
 
