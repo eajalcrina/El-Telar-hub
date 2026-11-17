@@ -1,0 +1,408 @@
+<!-- Fuente del prototipo. La tipografía Mluvka se incrusta al publicar (marcador __MLUVKA__); sin ella usa la de respaldo. -->
+<title>El Telar, dirección Textus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Textus: la página entera es urdimbre; el contenido se apoya sobre ella y la trama roja aparece solo donde algo se teje. */
+@font-face { font-family: 'Mluvka'; src: url(data:font/woff2;base64,__MLUVKA__) format('woff2'); font-weight: 400; font-display: swap; }
+:root {
+  --crema: #F5F3F0;
+  --papel: #FAFAF8;
+  --oscuro: #0D0D0D;
+  --texto-2: #4D4A46;
+  --rotulo: #66625D;
+  --hilo: rgba(13,13,13,0.07);
+  --linea: rgba(13,13,13,0.16);
+  --trama: #F32769;
+  --trama-osc: #C4126A;
+  --sans: 'Mluvka', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background-color: var(--crema);
+  background-image: repeating-linear-gradient(90deg, var(--hilo) 0 1px, transparent 1px 8px);
+  color: var(--oscuro); font-family: var(--sans); font-size: 17px; line-height: 1.6; margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 900px) { .wrap { padding-left: max(48px, env(safe-area-inset-left, 0px)); padding-right: max(48px, env(safe-area-inset-right, 0px)); } }
+h1, h2, h3, p { margin: 0; font-weight: 400; }
+h1, h2 { text-wrap: balance; }
+.rotulo { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rotulo); }
+.mono { font-family: var(--mono); }
+
+/* Barra superior */
+.barra { border-bottom: 1px solid var(--linea); background: var(--crema); }
+.barra .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.marca { font-size: 24px; letter-spacing: -0.02em; line-height: 1; }
+.marca span { color: var(--trama); }
+.aviso { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--texto-2); border: 1px solid var(--linea); padding: 6px 10px; background: var(--papel); }
+
+/* Hero */
+.hero .wrap { display: grid; gap: 40px; padding-block: 56px 72px; }
+@media (min-width: 980px) { .hero .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 64px; align-items: start; } }
+.hero h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.0; letter-spacing: -0.035em; max-width: 14ch; }
+.invita { font-size: clamp(20px, 2vw, 24px); line-height: 1.35; color: var(--texto-2); margin-top: 24px; max-width: 30ch; }
+.campo { margin-top: 32px; display: grid; gap: 10px; max-width: 520px; }
+.campo label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--texto-2); }
+.fila { display: flex; gap: 0; border: 1px solid var(--oscuro); background: var(--papel); }
+.fila input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 16px; height: 56px; font-family: var(--sans); font-size: 18px; color: var(--oscuro); }
+.fila input:focus { outline: none; }
+.fila:focus-within { box-shadow: 0 0 0 2px var(--trama); }
+.fila button { border: 0; background: var(--trama); color: var(--papel); font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; padding: 0 20px; cursor: pointer; }
+.fila button:hover { background: var(--trama-osc); }
+.fila button:focus-visible { outline: 2px solid var(--oscuro); outline-offset: -4px; }
+.ejemplos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.ejemplos button { font-family: var(--mono); font-size: 12px; border: 1px solid var(--linea); background: var(--papel); color: var(--texto-2); padding: 8px 10px; cursor: pointer; }
+.ejemplos button:hover { border-color: var(--oscuro); color: var(--oscuro); }
+.ejemplos button:focus-visible { outline: 2px solid var(--trama); outline-offset: 2px; }
+.resultado { margin-top: 24px; border-top: 1px solid var(--oscuro); padding-top: 16px; max-width: 520px; display: grid; gap: 6px; min-height: 96px; }
+.resultado .pieza { font-size: 28px; letter-spacing: -0.02em; line-height: 1.15; }
+.resultado .que { color: var(--texto-2); font-size: 16px; }
+
+.muestra { background: var(--papel); border: 1px solid var(--linea); display: grid; grid-template-rows: auto 1fr auto; min-width: 0; }
+.muestra-cab, .muestra-pie { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rotulo); }
+.muestra-cab { border-bottom: 1px solid var(--linea); }
+.muestra-pie { border-top: 1px solid var(--linea); text-transform: none; letter-spacing: 0.02em; }
+.muestra canvas { display: block; width: 100%; height: auto; }
+
+/* Secciones */
+.sec { border-top: 1px solid var(--linea); background: var(--crema); }
+.sec .wrap { padding-block: 72px; display: grid; gap: 32px; }
+.sec h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.06; letter-spacing: -0.03em; max-width: 24ch; }
+.lead { font-size: 19px; color: var(--texto-2); max-width: 62ch; }
+.dos { display: grid; gap: 32px; }
+@media (min-width: 860px) { .dos { grid-template-columns: 1fr 1fr; gap: 56px; } }
+.cita { background: var(--papel); border: 1px solid var(--linea); padding: 28px; display: grid; gap: 14px; }
+.cita q { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; quotes: '«' '»'; }
+.fuente { font-family: var(--mono); font-size: 12px; color: var(--texto-2); line-height: 1.5; }
+.fuente a { color: inherit; }
+
+.pvu { background: var(--oscuro); color: var(--papel); }
+.pvu .wrap { padding-block: 72px; display: grid; gap: 20px; }
+.pvu p.frase { font-size: clamp(28px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.03em; max-width: 26ch; }
+.pvu .rotulo { color: #A8A6A2; }
+.pruebas { display: grid; gap: 0; margin-top: 16px; }
+@media (min-width: 860px) { .pruebas { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+.pruebas div { border-top: 1px solid rgba(250,250,248,0.2); padding-block: 16px; display: grid; gap: 6px; }
+.pruebas h3 { font-size: 20px; }
+.pruebas p { font-size: 15px; color: #C9C6C1; }
+
+.tabla { overflow-x: auto; border-top: 1px solid var(--oscuro); }
+table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 620px; }
+th, td { text-align: left; vertical-align: top; padding: 14px 16px 14px 0; border-bottom: 1px solid var(--linea); }
+th { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rotulo); }
+td:first-child { font-size: 17px; }
+
+.dirs { display: grid; gap: 24px; }
+@media (min-width: 900px) { .dirs { grid-template-columns: repeat(3, 1fr); } }
+.dir { background: var(--papel); border: 1px solid var(--linea); padding: 24px; display: grid; gap: 12px; align-content: start; }
+.dir.elegida { border-color: var(--oscuro); box-shadow: inset 0 3px 0 var(--trama); }
+.dir h3 { font-size: 26px; letter-spacing: -0.02em; }
+.dir p { font-size: 15px; color: var(--texto-2); }
+.dir canvas { width: 100%; height: auto; display: block; border: 1px solid var(--linea); }
+
+.paleta { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+.sw { display: grid; gap: 8px; }
+.sw i { display: block; height: 72px; border: 1px solid var(--linea); }
+.sw span { font-family: var(--mono); font-size: 12px; color: var(--texto-2); }
+
+.pie { border-top: 1px solid var(--linea); background: var(--crema); }
+.pie .wrap { padding-block: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
+<header class="barra">
+  <div class="wrap">
+    <p class="marca">El Telar<span>.</span></p>
+    <p class="aviso">Exploración visual, dirección Textus. Borrador sin publicar</p>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="rotulo">IA para empresas medianas</p>
+      <h1 style="margin-top:20px">Capacitamos a tu equipo e instalamos procesos con IA, uno por uno</h1>
+      <p class="invita">Escribe lo que tu empresa olvida. Te lo devolvemos tejido.</p>
+      <form class="campo" id="form" autocomplete="off">
+        <label for="frase">¿Qué se le escapa a tu empresa cada semana?</label>
+        <div class="fila">
+          <input id="frase" name="frase" maxlength="80" placeholder="Las facturas que nadie cobra a tiempo">
+          <button type="submit">Tejer</button>
+        </div>
+        <div class="ejemplos" aria-label="Ejemplos">
+          <button type="button" data-ej="Las facturas que nadie cobra a tiempo">Facturas sin cobrar</button>
+          <button type="button" data-ej="Los contratos que vencen sin aviso">Contratos que vencen</button>
+          <button type="button" data-ej="Los acuerdos de la reunión del lunes">Acuerdos de reuniones</button>
+        </div>
+      </form>
+      <div class="resultado" id="resultado" aria-live="polite">
+        <p class="rotulo">Pieza que corresponde</p>
+        <p class="pieza" id="pieza">Escribe una frase y pulsa Tejer</p>
+        <p class="que" id="que">Cada letra se vuelve una pasada de hilo. Al terminar te mostramos qué pieza de El Telar ordena ese proceso.</p>
+      </div>
+    </div>
+    <figure class="muestra" style="margin:0">
+      <div class="muestra-cab"><span id="cab-izq">Muestra de tela</span><span id="cab-der">0 pasadas</span></div>
+      <canvas id="tela" width="1040" height="880" aria-hidden="true"></canvas>
+      <figcaption class="muestra-pie" id="pie-muestra">Antes de escribir: la Nota A de Ada Lovelace, 1843.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="rotulo">De dónde viene el nombre</p>
+    <h2>La IA trabaja con texto, y texto quiere decir tejido</h2>
+    <div class="dos">
+      <div class="cita">
+        <p class="rotulo">Texto</p>
+        <q>Del lat. textus; propiamente ‘trama’, ‘tejido’.</q>
+        <p class="fuente">Diccionario de la lengua española, entrada «texto». <a href="https://dle.rae.es/texto">dle.rae.es/texto</a></p>
+      </div>
+      <div class="cita">
+        <p class="rotulo">Nota A, 1843</p>
+        <q>La Máquina Analítica teje patrones algebraicos tal como el telar de Jacquard teje flores y hojas.</q>
+        <p class="fuente">Ada Lovelace, notas a su traducción del artículo de Menabrea sobre la Máquina Analítica de Babbage. Traducción propia del original «weaves algebraical patterns just as the Jacquard-loom weaves flowers and leaves». <a href="https://www.computerhistory.org/babbage/adalovelace/">Computer History Museum</a></p>
+      </div>
+    </div>
+    <p class="lead">El telar de Jacquard se programaba con tarjetas perforadas, y Babbage tomó ese mecanismo para su máquina. El Telar usa la misma idea: plantillas repetibles que cruzan los hilos que tu empresa ya tiene.</p>
+  </div>
+</section>
+
+<section class="pvu">
+  <div class="wrap">
+    <p class="rotulo">Propuesta de valor</p>
+    <p class="frase">Tejemos con tu equipo la memoria de tu empresa, un proceso a la vez, medido en dinero y a tu nombre.</p>
+    <div class="pruebas">
+      <div><h3>Un proceso a la vez</h3><p>Ninguna pieza nueva sin el acta de resultado de la anterior.</p></div>
+      <div><h3>Medido en dinero</h3><p>Línea base el primer día y comparación el día 30.</p></div>
+      <div><h3>A tu nombre</h3><p>Exportación completa y legible, publicada antes de firmar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="rotulo">El sistema</p>
+    <h2>Qué es cada hilo</h2>
+    <div class="tabla">
+      <table>
+        <thead><tr><th scope="col">En el telar</th><th scope="col">En la IA</th><th scope="col">En El Telar</th></tr></thead>
+        <tbody>
+          <tr><td>Urdimbre</td><td>Estructura de datos</td><td>Las áreas, la gente y los datos de la empresa. Siempre fueron suyos</td></tr>
+          <tr><td>Trama</td><td>Conexiones entre datos</td><td>Cada proceso instalado, que cruza varias áreas</td></tr>
+          <tr><td>Tarjeta perforada</td><td>Programa, plantilla</td><td>La plantilla repetible de cada pieza</td></tr>
+          <tr><td>Tejido</td><td>Red de conexiones</td><td>La memoria de la empresa, exportable y a su nombre</td></tr>
+          <tr><td>Quien maneja el telar</td><td>Control humano</td><td>Un responsable del cliente aprueba en cada pieza</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="rotulo">Direcciones evaluadas</p>
+    <h2>Tres caminos de diseño</h2>
+    <div class="dirs">
+      <article class="dir elegida">
+        <p class="rotulo" style="color:var(--trama-osc)">Recomendada</p>
+        <h3>Textus</h3>
+        <canvas class="mini" data-modo="textus" width="600" height="240" aria-hidden="true"></canvas>
+        <p>Lo que el visitante escribe se teje frente a él y queda como una tela con su nombre. La urdimbre es el núcleo común; la trama, los datos de cada empresa.</p>
+      </article>
+      <article class="dir">
+        <p class="rotulo">Alternativa</p>
+        <h3>Tarjeta</h3>
+        <canvas class="mini" data-modo="tarjeta" width="600" height="240" aria-hidden="true"></canvas>
+        <p>Cada pieza es una tarjeta perforada y la empresa es la secuencia que la máquina lee. Sirve como sistema para la página de precios.</p>
+      </article>
+      <article class="dir">
+        <p class="rotulo">Alternativa</p>
+        <h3>Lanzadera</h3>
+        <canvas class="mini" data-modo="lanzadera" width="600" height="240" aria-hidden="true"></canvas>
+        <p>Un objeto con forma de lanzadera cruza la urdimbre llevando la memoria de una persona a otra. Es la única con personaje.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <p class="rotulo">Paleta y tipografía</p>
+    <h2>Píxel duro, sin lana ni madera</h2>
+    <div class="paleta">
+      <div class="sw"><i style="background:var(--crema)"></i><span>Crema #F5F3F0, fondo</span></div>
+      <div class="sw"><i style="background:var(--oscuro)"></i><span>Oscuro #0D0D0D, urdimbre y texto</span></div>
+      <div class="sw"><i style="background:var(--trama)"></i><span>Rojo #F32769, solo trama y botón</span></div>
+      <div class="sw"><i style="background:var(--papel)"></i><span>Papel #FAFAF8, superficies</span></div>
+    </div>
+    <p class="lead">Mluvka para titulares y texto, JetBrains Mono para bits, rótulos y cifras. El rojo nunca va como texto de lectura sobre crema porque no alcanza el contraste.</p>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="wrap">
+    <p class="rotulo">El Telar, un sistema de Redesign Lab</p>
+    <p class="rotulo">Borrador del 17 de noviembre de 2026</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var C = { crema: '#FAFAF8', oscuro: '#0D0D0D', trama: '#F32769', hilo: 'rgba(13,13,13,0.18)', bit: '#66625D' };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var LOVELACE = 'La Máquina Analítica teje patrones algebraicos tal como el telar de Jacquard teje flores y hojas.';
+
+  var canvas = document.getElementById('tela');
+  var ctx = canvas.getContext('2d');
+  var W = canvas.width, H = canvas.height;
+  var STRIP = 230;           // tira de bits a la izquierda
+  var CELL = 20;             // tamaño de cada cruce
+  var COLS = Math.floor((W - STRIP - 20) / CELL); // cruces por fila
+  var ROWS = Math.floor((H - 20) / CELL);
+  var rows = [];             // { bits: '01010101', ch: 'a' }
+  var queue = [];
+  var timer = null;
+
+  function bytesOf(text) {
+    var out = [];
+    var enc = new TextEncoder().encode(text);
+    var chars = Array.from(text);
+    var ci = 0, k = 0;
+    // asocia cada byte con su carácter para la tira
+    chars.forEach(function (ch) {
+      var b = new TextEncoder().encode(ch);
+      for (var i = 0; i < b.length; i++) out.push({ bits: b[i].toString(2).padStart(8, '0'), ch: i === 0 ? ch : '' });
+    });
+    return out;
+  }
+
+  function draw() {
+    ctx.fillStyle = C.crema; ctx.fillRect(0, 0, W, H);
+    var x0 = STRIP + 10, y0 = 10;
+    // urdimbre
+    ctx.fillStyle = C.hilo;
+    for (var c = 0; c < COLS; c++) ctx.fillRect(x0 + c * CELL + CELL / 2 - 1, y0, 2, ROWS * CELL);
+    var visible = rows.slice(-ROWS);
+    visible.forEach(function (r, i) {
+      var y = y0 + i * CELL;
+      // tira de bits, como una tarjeta
+      ctx.font = '500 19px "JetBrains Mono", monospace';
+      ctx.fillStyle = C.bit; ctx.textBaseline = 'middle';
+      ctx.fillText((r.ch === ' ' ? '␣' : (r.ch || '·')), 10, y + CELL / 2);
+      ctx.fillText(r.bits, 40, y + CELL / 2);
+      for (var c = 0; c < COLS; c++) {
+        // la fila se repite en espejo para llenar el ancho
+        var j = c % 16; var idx = j < 8 ? j : 15 - j;
+        var on = r.bits[idx] === '1';
+        var x = x0 + c * CELL;
+        if (on) { ctx.fillStyle = C.trama; ctx.fillRect(x, y + 3, CELL, CELL - 6); }
+        else { ctx.fillStyle = C.oscuro; ctx.fillRect(x + CELL / 2 - 3, y + 1, 6, CELL - 2); }
+      }
+    });
+    document.getElementById('cab-der').textContent = rows.length + (rows.length === 1 ? ' pasada' : ' pasadas');
+  }
+
+  function weave(text, caption) {
+    if (timer) { clearInterval(timer); timer = null; }
+    rows = []; queue = bytesOf(text);
+    if (caption) document.getElementById('pie-muestra').textContent = caption;
+    if (reduce) { rows = queue; queue = []; draw(); return; }
+    timer = setInterval(function () {
+      if (!queue.length) { clearInterval(timer); timer = null; return; }
+      rows.push(queue.shift()); draw();
+    }, 45);
+  }
+
+  var PIEZAS = [
+    { re: /(factur|cobr|pago|pagan|deud|atras|cartera)/i, nombre: 'Cobranza', que: 'Clientes atrasados priorizados desde una exportación semanal, con recordatorios que una persona aprueba.' },
+    { re: /(contrat|venc|p[oó]liza|garant|renov|licenc|certific|permiso)/i, nombre: 'Vencimientos', que: 'Plazos, renovaciones y garantías en una matriz, con avisos antes de cada fecha y la cláusula citada.' },
+    { re: /(reuni|acuerd|compromis|acta|pendient|tarea)/i, nombre: 'Acuerdos de reuniones', que: 'Cada acuerdo con su responsable y su fecha, y un recordatorio antes de la siguiente reunión.' },
+    { re: /(report|gerenc|indicador|tablero|cierre|cifra)/i, nombre: 'Reporte gerencial', que: 'Un tablero que se arma solo y muestra el origen de cada cifra.' },
+    { re: /(reclam|queja|consult|whatsapp|client)/i, nombre: 'Atención', que: 'Respuestas oficiales y reclamos clasificados por motivo y derivados a quien corresponde.' },
+    { re: /(gasto|vi[aá]tic|rendici|caja chica|reembols)/i, nombre: 'Gastos y viáticos', que: 'Comprobantes leídos y ordenados para el asiento, con alertas de lo que falta.' },
+    { re: /(compr|proveedor|cotiz|orden)/i, nombre: 'Compras', que: 'Del pedido a la orden de compra, con cotizaciones comparadas y una aprobación.' }
+  ];
+
+  function sugerir(text) {
+    var p = PIEZAS.find(function (x) { return x.re.test(text); });
+    var el = document.getElementById('pieza'), q = document.getElementById('que');
+    if (p) { el.textContent = p.nombre; q.textContent = p.que; }
+    else { el.textContent = 'Todavía no tenemos esa pieza'; q.textContent = 'Una persona del equipo revisa ese proceso contigo en una conversación de 30 minutos.'; }
+  }
+
+  var input = document.getElementById('frase');
+  var live = null;
+  input.addEventListener('input', function () {
+    var v = input.value.trim();
+    clearTimeout(live);
+    live = setTimeout(function () {
+      if (v) weave(v, 'Tu frase, byte por byte: un 1 pone la trama sobre la urdimbre.');
+    }, 250);
+  });
+  document.getElementById('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim() || input.placeholder;
+    if (!input.value.trim()) input.value = v;
+    weave(v, 'Tu frase, byte por byte: un 1 pone la trama sobre la urdimbre.');
+    sugerir(v);
+  });
+  document.querySelectorAll('[data-ej]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      input.value = b.getAttribute('data-ej');
+      weave(input.value, 'Tu frase, byte por byte: un 1 pone la trama sobre la urdimbre.');
+      sugerir(input.value);
+    });
+  });
+
+  // Estado inicial: la frase de Lovelace, tejida una sola vez.
+  function start() { weave(LOVELACE, 'Antes de escribir: la Nota A de Ada Lovelace, 1843.'); }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else start();
+  // primer cuadro visible aunque la animación no corra
+  rows = bytesOf(LOVELACE).slice(0, 12); draw();
+
+  // Miniaturas de las tres direcciones (estáticas)
+  document.querySelectorAll('canvas.mini').forEach(function (cv) {
+    var g = cv.getContext('2d'), w = cv.width, h = cv.height, modo = cv.getAttribute('data-modo');
+    g.fillStyle = C.crema; g.fillRect(0, 0, w, h);
+    if (modo === 'textus') {
+      var bs = bytesOf('El Telar'); var s = 15;
+      for (var c = 0; c < w / s; c++) { g.fillStyle = C.hilo; g.fillRect(c * s + s / 2 - 1, 0, 2, h); }
+      for (var r = 0; r < h / s; r++) {
+        var bits = bs[r % bs.length].bits;
+        for (var c2 = 0; c2 < w / s; c2++) {
+          var j = c2 % 16; var on = bits[j < 8 ? j : 15 - j] === '1';
+          if (on) { g.fillStyle = C.trama; g.fillRect(c2 * s, r * s + 2, s, s - 4); }
+          else { g.fillStyle = C.oscuro; g.fillRect(c2 * s + s / 2 - 2, r * s, 4, s); }
+        }
+      }
+    } else if (modo === 'tarjeta') {
+      g.fillStyle = C.oscuro; g.fillRect(0, 0, w, h);
+      var bs2 = bytesOf('Cobranza');
+      for (var k = 0; k < 3; k++) {
+        var x = 24 + k * 192; g.fillStyle = '#F5F3F0'; g.fillRect(x, 28, 168, 184);
+        for (var rr = 0; rr < 8; rr++) for (var cc = 0; cc < 8; cc++) {
+          var bit = bs2[(rr + k) % bs2.length].bits[cc] === '1';
+          g.fillStyle = bit ? C.trama : 'rgba(13,13,13,0.12)';
+          g.beginPath(); g.arc(x + 22 + cc * 18, 52 + rr * 20, bit ? 6 : 3, 0, Math.PI * 2); g.fill();
+        }
+      }
+    } else {
+      var s3 = 12;
+      for (var c3 = 0; c3 < w / s3; c3++) { g.fillStyle = 'rgba(13,13,13,0.22)'; g.fillRect(c3 * s3 + s3 / 2 - 1, 0, 2, h); }
+      g.strokeStyle = C.trama; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 150);
+      for (var x3 = 0; x3 < 420; x3 += 12) g.lineTo(x3, 150 + (Math.floor(x3 / 12) % 2 ? -4 : 4));
+      g.stroke();
+      g.fillStyle = C.trama; g.beginPath();
+      g.moveTo(420, 150); g.lineTo(456, 128); g.lineTo(540, 128); g.lineTo(576, 150); g.lineTo(540, 172); g.lineTo(456, 172); g.closePath(); g.fill();
+      g.fillStyle = C.crema; g.fillRect(478, 144, 40, 12);
+      g.fillStyle = C.oscuro; g.font = '500 18px "JetBrains Mono", monospace'; g.fillText('¿Qué se olvidó esta semana?', 24, 60);
+    }
+  });
+})();
+</script>
