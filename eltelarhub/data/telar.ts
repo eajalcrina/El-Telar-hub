@@ -46,14 +46,14 @@ export const PIECES = {
     'La siguiente pieza se decide con el resultado de la anterior.',
     'Cada pieza se puede apagar por separado.',
   ],
-  vertical: 'Primera plantilla: centros comerciales',
+  vertical: 'Ejemplos de piezas',
   items: [
-    { name: 'Vence', area: 'Contratos', body: 'Plazos, reajustes y garantías de cada local, con avisos antes de cada fecha y la cláusula citada.' },
-    { name: 'Cobra', area: 'Cobranza', body: 'Locatarios atrasados priorizados desde una exportación semanal, con recordatorios que una persona aprueba.' },
-    { name: 'Atiende', area: 'Atención al cliente', body: 'Respuestas oficiales sobre horarios y eventos, y reclamos clasificados por motivo y derivados.' },
-    { name: 'Campaña', area: 'Marketing', body: 'Piezas por tienda con la guía de marca y un resumen de qué funcionó en la campaña anterior.' },
-    { name: 'Al día', area: 'Operaciones', body: 'Certificados, mantenimiento e inspecciones de juegos y edificios, con expediente y avisos.' },
-    { name: 'Pulso', area: 'Gerencia', body: 'Tablero de cobranza, ocupación y gastos que muestra el origen de cada cifra.' },
+    { name: 'Vencimientos', area: 'Contratos y documentos', body: 'Plazos, renovaciones y garantías en una matriz con avisos antes de cada fecha y la cláusula citada.' },
+    { name: 'Cobranza', area: 'Finanzas', body: 'Clientes atrasados priorizados desde una exportación semanal, con recordatorios que una persona aprueba.' },
+    { name: 'Reporte gerencial', area: 'Dirección', body: 'Un tablero que se arma solo y muestra el origen de cada cifra.' },
+    { name: 'Atención', area: 'Clientes', body: 'Respuestas oficiales y reclamos clasificados por motivo y derivados a quien corresponde.' },
+    { name: 'Contenidos', area: 'Marketing', body: 'Piezas con la guía de marca y un resumen de qué funcionó en la campaña anterior.' },
+    { name: 'Expedientes', area: 'Operaciones', body: 'Certificados, mantenimientos e inspecciones al día, con avisos antes de cada vencimiento.' },
   ],
 }
 
