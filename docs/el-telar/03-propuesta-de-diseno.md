@@ -16,7 +16,7 @@ El techo está en la interacción. La promesa es «Just ask Sati», pero el hero
 | Retícula | La página es urdimbre: hilos verticales de 1 px cada 8 px; cada cruce es un píxel | Filas de perforaciones con el ancho de una tarjeta | La urdimbre de Textus |
 | Color | Oscuro sobre crema; la trama en rojo, solo en superficies grandes | Fondo oscuro, tarjetas crema, perforaciones rojas | Lanzadera roja, resto oscuro y crema |
 | Interacción central | El visitante escribe qué se le escapa a su empresa y ve su frase convertida en tela | El visitante perfora su semana y la máquina nombra la pieza | La lanzadera pregunta qué se olvidó esta semana |
-| Personaje | No | No | Sí, un objeto con oficio y sin cara |
+| Personaje (decisión del 17-nov) | Tela: un tejido colgado con flecos, ojos y boca | Tarja: una tarjeta perforada con ojos de perforación | Lanza: una lanzadera que arrastra su hilo |
 
 **Por qué Textus.** Traduce en forma la propuesta de valor:
 - La urdimbre fija es el núcleo común a todos los clientes.
@@ -65,7 +65,7 @@ En la categoría, la respuesta de la IA suele ser un chat o una mascota. Aquí e
 
 ## Lo que no se copia de Satia
 
-- Mascota con cara.
+- Un bloque de puntos con cara, como Sati. Los personajes de El Telar están hechos de hilos cruzados y tienen siluetas del oficio.
 - La fórmula «Just ask X. It gets done.» y el «pides, construye, apruebas».
 - Bandas negras con frase-manifiesto centrada.
 - La enumeración «no es un agente, no es una automatización…».
