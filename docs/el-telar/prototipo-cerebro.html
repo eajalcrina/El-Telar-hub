@@ -1,7 +1,7 @@
 <!-- Fuente del prototipo. La tipografía Mluvka se incrusta al publicar (marcador __MLUVKA__); sin ella usa la de respaldo. -->
 <title>El Telar, el cerebro</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Fredoka:wght@500;600&display=swap">
 <style>
 /* Pantalla única sobre blanco: tiras de código en grises entran desde todos los lados; un cabezal arma bloques por zonas y los conecta. El título queda libre al centro. */
 @font-face { font-family: 'Mluvka'; src: url(data:font/woff2;base64,__MLUVKA__) format('woff2'); font-weight: 400; font-display: swap; }
@@ -94,12 +94,12 @@ form { margin: 26px auto 0; max-width: 520px; }
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var cv = document.getElementById('lienzo'), ctx = cv.getContext('2d');
-  var W = 0, H = 0, dpr = 1, CELL = 14;
-  var GRIS = ['#DEDAD4', '#D2CDC6', '#C6C1BA', '#E6E2DC']; var GL = 36;
+  var W = 0, H = 0, dpr = 1, CELL = 14, CW = 10;
+  var GRIS = ['#C9C3BB', '#BBB5AC', '#D4CFC8', '#ADA79E']; var GL = 36;
   var TINTA = '#2A2826', ACENTO = '#F32769';
   var TIPOS = ['texto', 'numero', 'binario', 'cubo', 'rombo'];
   var PALABRAS = ['factura', 'contrato', 'acta', 'reclamo', 'póliza', 'cotización', 'reporte', 'planilla', 'correo', 'pedido', 'garantía', 'cierre'];
-  var NOMBRES = ['Cobranza', 'Contratos', 'Acuerdos', 'Reportes', 'Compras', 'Atención'];
+  var NOMBRES = ['cobranza', 'contratos', 'reportes', 'acuerdos'];
   var streams = [], blocks = [], particles = [], links = [], pulses = [];
   var head = { x: 0, y: 0, tx: 0, ty: 0, block: -1, cell: 0, wait: 0, mode: 'viaja', blink: 0 };
   var safe = { x: 0, y: 0, w: 0, h: 0 };
@@ -125,7 +125,7 @@ form { margin: 26px auto 0; max-width: 520px; }
   function makeStream() {
     var a = Math.floor(Math.random() * 4), b = (a + 1 + Math.floor(Math.random() * 3)) % 4;
     var p0 = edgePoint(a), p2 = edgePoint(b), p1 = [rnd(W * 0.15, W * 0.85), rnd(H * 0.15, H * 0.85)];
-    var tipo = pick(TIPOS);
+    var tipo = Math.random() < 0.4 ? 'texto' : pick(TIPOS);
     var len = Math.hypot(p2[0] - p0[0], p2[1] - p0[1]) * 1.15;
     var n = Math.floor(len / (GL * 0.95));
     var gl = []; for (var i = 0; i < n; i++) gl.push(glyph(tipo, i));
@@ -139,18 +139,13 @@ form { margin: 26px auto 0; max-width: 520px; }
   // ---------- Bloques y zonas ----------
   function zonas() {
     var m = W < 700;
-    var cols = m ? 7 : 9, rows = m ? 4 : 5;
-    var bw = cols * CELL, bh = rows * CELL;
-    var z;
-    if (m) {
-      z = [[0.06, 0.13], [0.54, 0.16], [0.06, 0.80], [0.54, 0.83]];
-    } else {
-      z = [[0.06, 0.15], [0.05, 0.47], [0.15, 0.76], [0.66, 0.78], [0.80, 0.47], [0.74, 0.14]];
-    }
+    var z = m ? [[0.08, 0.15], [0.42, 0.84]] : [[0.08, 0.2], [0.72, 0.46], [0.16, 0.78]];
     return z.map(function (p, i) {
+      var word = (i === 0 && primera) ? primera : NOMBRES[i % NOMBRES.length];
+      var cols = word.length, rows = 1, bw = cols * CW, bh = rows * CELL;
       var x = Math.round(p[0] * W), y = Math.round(p[1] * H);
-      x = Math.min(Math.max(x, 22), W - bw - 22);
-      return { x: x, y: y, cols: cols, rows: rows, w: bw, h: bh, cells: [], done: false, name: NOMBRES[i % NOMBRES.length], idx: i };
+      x = Math.min(Math.max(x, 26), W - bw - 26);
+      return { x: x, y: y, cols: cols, rows: rows, w: bw, h: bh, cells: [], done: false, word: word, idx: i };
     });
   }
 
@@ -159,10 +154,10 @@ form { margin: 26px auto 0; max-width: 520px; }
     W = window.innerWidth; H = window.innerHeight;
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    CELL = W < 700 ? 15 : 19;
+    CELL = W < 700 ? 17 : 21; CW = CELL * 0.66;
     var r = document.getElementById('centro').getBoundingClientRect();
     safe = { x: r.left - 30, y: r.top - 20, w: r.width + 60, h: r.height + 40 };
-    GL = W < 700 ? 26 : 36; streams = []; var ns = W < 700 ? 6 : 11; for (var i = 0; i < ns; i++) streams.push(makeStream());
+    GL = W < 700 ? 26 : 36; streams = []; var ns = W < 700 ? 7 : 13; for (var i = 0; i < ns; i++) streams.push(makeStream());
     start();
   }
 
@@ -172,50 +167,59 @@ form { margin: 26px auto 0; max-width: 520px; }
     nextBlock();
     if (reduce) { blocks.forEach(function (b) { fillAll(b); b.done = true; }); for (var i = 1; i < blocks.length; i++) links.push(makeLink(blocks[i - 1], blocks[i], 1)); }
   }
-  function cellType(b, r) { return TIPOS[(r + b.idx) % TIPOS.length]; }
-  function cellGlyph(b, r, c) {
-    var t = cellType(b, r);
-    if (t === 'texto') {
-      var word = (b.idx === 0 && fraseExtra ? fraseExtra : PALABRAS[(b.idx * 3 + r) % PALABRAS.length]) + ' ';
-      return word[c % word.length];
-    }
-    return glyph(t, c);
-  }
+  function cellType(b, r) { return 'texto'; }
+  function cellGlyph(b, r, c) { return b.word[c]; }
+  var primera = '';
   function fillAll(b) { for (var r = 0; r < b.rows; r++) for (var c = 0; c < b.cols; c++) b.cells.push({ r: r, c: c, t: cellType(b, r), g: cellGlyph(b, r, c), a: 1 }); }
   function nextBlock() {
     head.block++;
-    if (head.block >= blocks.length) { head.mode = 'listo'; head.wait = performance.now() + 9000; return; }
+    if (head.block >= blocks.length) { head.mode = 'listo'; head.wait = performance.now() + 7000; return; }
     var b = blocks[head.block];
     head.tx = b.x; head.ty = b.y; head.mode = 'viaja'; head.cell = 0;
   }
 
   // ---------- Conexiones ----------
   function makeLink(a, b, prog) {
-    var ax = a.x + a.w / 2, ay = a.y + a.h / 2, bx = b.x + b.w / 2, by = b.y + b.h / 2;
-    var p;
-    if (Math.abs(ax - bx) < Math.abs(ay - by)) {
-      var sy = ay < by ? a.y + a.h : a.y, ey = ay < by ? b.y : b.y + b.h, mid = (sy + ey) / 2;
-      p = [[ax, sy], [ax, mid], [bx, mid], [bx, ey]];
-    } else {
-      var sx = ax < bx ? a.x + a.w : a.x, ex = ax < bx ? b.x : b.x + b.w, midx = (sx + ex) / 2;
-      p = [[sx, ay], [midx, ay], [midx, by], [ex, by]];
-    }
-    // si la conexión cruza el título, la rodea por el borde de la pantalla
+    var pad = 14, m = 22;
+    function caja(k) { return { l: k.x - pad, r: k.x + k.w + pad, t: k.y - pad, b: k.y + k.h + pad, cx: k.x + k.w / 2, cy: k.y + k.h / 2 }; }
+    var A = caja(a), B = caja(b);
+    function puertos(K) { return [{ p: [K.r, K.cy], d: [1, 0] }, { p: [K.l, K.cy], d: [-1, 0] }, { p: [K.cx, K.t], d: [0, -1] }, { p: [K.cx, K.b], d: [0, 1] }]; }
     function cruza(q) {
+      var sx = safe.x - 10, sy = safe.y - 10, sw = safe.w + 20, sh = safe.h + 20;
       for (var j = 1; j < q.length; j++) {
         var x1 = Math.min(q[j - 1][0], q[j][0]), x2 = Math.max(q[j - 1][0], q[j][0]);
         var y1 = Math.min(q[j - 1][1], q[j][1]), y2 = Math.max(q[j - 1][1], q[j][1]);
-        if (x2 >= safe.x && x1 <= safe.x + safe.w && y2 >= safe.y && y1 <= safe.y + safe.h) return true;
+        if (x2 >= sx && x1 <= sx + sw && y2 >= sy && y1 <= sy + sh) return true;
+        if (x1 < 4 || x2 > W - 4 || y1 < 70 || y2 > H - 60) return true;
       }
       return false;
     }
-    if (cruza(p)) {
-      var izq = (ax + bx) / 2 < W / 2, ex2 = izq ? 8 : W - 8;
-      var sx2 = izq ? a.x - 10 : a.x + a.w + 10, tx2 = izq ? b.x - 10 : b.x + b.w + 10;
-      p = [[sx2, ay], [ex2, ay], [ex2, by], [tx2, by]];
-    }
-    var len = 0; for (var i = 1; i < p.length; i++) len += Math.abs(p[i][0] - p[i - 1][0]) + Math.abs(p[i][1] - p[i - 1][1]);
-    return { p: p, len: len, prog: prog || 0 };
+    function largo(q) { var L = 0; for (var j = 1; j < q.length; j++) L += Math.abs(q[j][0] - q[j - 1][0]) + Math.abs(q[j][1] - q[j - 1][1]); return L; }
+    var mejor = null, mejorL = 1e9;
+    var carriles = [safe.y - 34, safe.y + safe.h + 34, safe.x - 34, safe.x + safe.w + 34];
+    puertos(A).forEach(function (pa) {
+      puertos(B).forEach(function (pb) {
+        var s0 = [pa.p[0] + pa.d[0] * m, pa.p[1] + pa.d[1] * m], e0 = [pb.p[0] + pb.d[0] * m, pb.p[1] + pb.d[1] * m];
+        var cands = [
+          [pa.p, s0, [e0[0], s0[1]], e0, pb.p],
+          [pa.p, s0, [s0[0], e0[1]], e0, pb.p]
+        ];
+        carriles.forEach(function (c, k) {
+          if (k < 2) cands.push([pa.p, s0, [s0[0], c], [e0[0], c], e0, pb.p]);
+          else cands.push([pa.p, s0, [c, s0[1]], [c, e0[1]], e0, pb.p]);
+        });
+        cands.forEach(function (q) {
+          // quita puntos repetidos o alineados
+          var r = [q[0]];
+          for (var j = 1; j < q.length; j++) { var pr = r[r.length - 1]; if (Math.abs(q[j][0] - pr[0]) + Math.abs(q[j][1] - pr[1]) > 0.5) r.push(q[j]); }
+          if (cruza(r)) return;
+          var L = largo(r) + r.length * 30;
+          if (L < mejorL) { mejorL = L; mejor = r; }
+        });
+      });
+    });
+    var p = mejor || [[A.r, A.cy], [B.l, B.cy]];
+    return { p: p, len: largo(p), prog: prog || 0 };
   }
   function pointAt(l, d) {
     for (var i = 1; i < l.p.length; i++) {
@@ -245,7 +249,7 @@ form { margin: 26px auto 0; max-width: 520px; }
     else { ctx.fillText(g, x, y); }
   }
   function drawStreams(t) {
-    ctx.font = '400 ' + GL + 'px "JetBrains Mono", monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '600 ' + GL + 'px "Fredoka", "Mluvka", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     streams.forEach(function (s) {
       var shift = (s.off + t * s.speed) % 1;
       for (var i = 0; i < s.n; i++) {
@@ -260,19 +264,20 @@ form { margin: 26px auto 0; max-width: 520px; }
     ctx.globalAlpha = 1;
   }
   function drawBlocks(t) {
-    ctx.font = '500 ' + Math.round(CELL * 0.8) + 'px "JetBrains Mono", monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = '600 ' + Math.round(CELL * 0.95) + 'px "Fredoka", "Mluvka", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     blocks.forEach(function (b) {
       if (!b.cells.length) return;
       // fondo y marco del bloque
-      ctx.globalAlpha = 1; ctx.fillStyle = '#FFFFFF'; rr(b.x - 10, b.y - 10, b.w + 20, b.h + 20, 14); ctx.fill();
-      ctx.globalAlpha = b.done ? 1 : 0.6; ctx.strokeStyle = b.done ? '#111111' : '#C6C1BA'; ctx.lineWidth = 1.2;
-      rr(b.x - 10, b.y - 10, b.w + 20, b.h + 20, 14); ctx.stroke();
+      var pad = 14, R = (b.h + pad * 2) / 2;
+      ctx.globalAlpha = 1; ctx.fillStyle = '#FFFFFF'; rr(b.x - pad, b.y - pad, b.w + pad * 2, b.h + pad * 2, R); ctx.fill();
+      ctx.globalAlpha = b.done ? 1 : 0.6; ctx.strokeStyle = b.done ? '#111111' : '#ADA79E'; ctx.lineWidth = 1.4;
+      rr(b.x - pad, b.y - pad, b.w + pad * 2, b.h + pad * 2, R); ctx.stroke();
       b.cells.forEach(function (c) {
-        var col = c.r % 2 ? TINTA : '#5E5A55';
-        drawGlyph(c.t, c.g, b.x + c.c * CELL + CELL / 2, b.y + c.r * CELL + CELL / 2, CELL, col, c.a);
+        var col = TINTA;
+        drawGlyph(c.t, c.g, b.x + c.c * CW + CW / 2, b.y + c.r * CELL + CELL / 2, CELL, col, c.a);
       });
       ctx.globalAlpha = 1;
-      if (b.done) { ctx.fillStyle = ACENTO; ctx.beginPath(); ctx.arc(b.x + b.w + 10, b.y - 10, 4, 0, 6.283); ctx.fill(); }
+      if (b.done) { ctx.fillStyle = ACENTO; ctx.beginPath(); ctx.arc(b.x + b.w + 14, b.y - 12, 4.5, 0, 6.283); ctx.fill(); }
     });
   }
   function drawLinks(t) {
@@ -291,7 +296,7 @@ form { margin: 26px auto 0; max-width: 520px; }
       ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
       // nodos redondos en los extremos
       ctx.fillStyle = '#111111'; ctx.beginPath(); ctx.arc(l.p[0][0], l.p[0][1], 3.5, 0, 6.283); ctx.fill();
-      if (l.prog >= 1) { ctx.beginPath(); ctx.arc(l.p[3][0], l.p[3][1], 3.5, 0, 6.283); ctx.fill(); }
+      if (l.prog >= 1) { var u = l.p[l.p.length - 1]; ctx.beginPath(); ctx.arc(u[0], u[1], 3.5, 0, 6.283); ctx.fill(); }
     });
     pulses.forEach(function (p) {
       var l = links[p.l]; if (!l || l.prog < 1) return;
@@ -300,7 +305,7 @@ form { margin: 26px auto 0; max-width: 520px; }
   }
   function drawParticles() {
     ctx.font = '500 11px "JetBrains Mono", monospace';
-    particles.forEach(function (p) { var sz = GL + (CELL - GL) * p.e; ctx.font = '400 ' + Math.round(sz * 0.8) + 'px "JetBrains Mono", monospace'; drawGlyph(p.t, p.g, p.x, p.y, sz, '#5E5A55', Math.max(0.08, fadeAt(p.x, p.y))); });
+    particles.forEach(function (p) { var sz = GL + (CELL - GL) * p.e; ctx.font = '600 ' + Math.round(sz * 0.95) + 'px "Fredoka", "Mluvka", sans-serif'; drawGlyph(p.t, p.g, p.x, p.y, sz, '#3A3734', Math.max(0.08, fadeAt(p.x, p.y))); });
     ctx.globalAlpha = 1;
   }
   function drawHead(t) {
@@ -310,7 +315,7 @@ form { margin: 26px auto 0; max-width: 520px; }
     ctx.fillStyle = '#111111'; rr(-14, -CELL / 2 - 16, 28, 12, 6); ctx.fill();
     ctx.fillStyle = ACENTO; ctx.beginPath(); ctx.arc(0, -CELL / 2 - 2, 3, 0, 6.283); ctx.fill();
     // la celda que está tejiendo
-    if (head.mode === 'imprime') { ctx.globalAlpha = 0.25; ctx.fillStyle = ACENTO; rr(-CELL / 2, -CELL / 2, CELL, CELL, CELL * 0.3); ctx.fill(); ctx.globalAlpha = 1; }
+    if (head.mode === 'imprime') { ctx.globalAlpha = 0.25; ctx.fillStyle = ACENTO; rr(-CW / 2 - 1, -CELL / 2, CW + 2, CELL, CW * 0.4); ctx.fill(); ctx.globalAlpha = 1; }
     ctx.restore();
   }
 
@@ -339,16 +344,16 @@ form { margin: 26px auto 0; max-width: 520px; }
         if (head.cell >= total) {
           b.done = true;
           if (head.block > 0) links.push(makeLink(blocks[head.block - 1], b, 0));
-          if (head.block === blocks.length - 1 && blocks.length > 3) links.push(makeLink(b, blocks[0], 0));
+          
           nextBlock();
         } else {
           var r = Math.floor(head.cell / b.cols), k = head.cell % b.cols, c = r % 2 ? b.cols - 1 - k : k;
-          head.x = b.x + c * CELL + CELL / 2; head.y = b.y + r * CELL + CELL / 2;
-          var s = pick(streams), u = Math.random(), from = bez(s, u);
+          head.x = b.x + c * CW + CW / 2; head.y = b.y + r * CELL + CELL / 2;
+          var txt = streams.filter(function (x) { return x.tipo === 'texto'; }); var s = pick(txt.length ? txt : streams), u = 0.15 + Math.random() * 0.7, from = bez(s, u);
           var cell = { r: r, c: c, t: cellType(b, r), g: cellGlyph(b, r, c), a: 0 };
           b.cells.push(cell);
           particles.push({ x: from[0], y: from[1], sx: from[0], sy: from[1], ex: head.x, ey: head.y, t0: t, dur: 420, t: cell.t, g: cell.g, cell: cell });
-          head.cell++; head.wait = t + (k === b.cols - 1 ? 90 : 26);
+          head.cell++; head.wait = t + 110;
         }
       }
     } else if (head.mode === 'listo' && t > head.wait) {
@@ -389,7 +394,7 @@ form { margin: 26px auto 0; max-width: 520px; }
     if (hit) { out.append('Eso lo teje la pieza '); var b = document.createElement('b'); b.textContent = hit.n; out.append(b, '. La conectamos con las demás.'); }
     else out.textContent = 'Todavía no tenemos esa pieza. Una persona del equipo lo revisa contigo.';
     // la frase entra al primer bloque y el cabezal vuelve a empezar
-    fraseExtra = v.toLowerCase();
+    primera = hit ? hit.n.toLowerCase().split(' ')[0] : '';
     var s = makeStream(); s.tipo = 'texto'; s.gl = Array.from((v + ' ').repeat(12)).slice(0, s.n); s.color = '#8E8A84'; streams.push(s);
     start();
   });

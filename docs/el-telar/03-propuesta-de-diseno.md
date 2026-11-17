@@ -159,3 +159,12 @@ Fuente: `prototipo-cerebro.html`. Pendientes:
 | 4 | Conectamos lo que tu empresa sabe y lo ponemos a trabajar. | Procesos con IA instalados con tu equipo, medidos en dinero y a tu nombre. |
 
 El campo pasa a «¿Qué proceso conectamos primero?» con el botón «Conectar».
+
+### Segundo ajuste del camino E (17-nov-2026)
+
+- **Tipografía de los códigos:** Fredoka, una sans redondeada en peso 600, más amigable.
+- **Las tiras mandan:** más contraste en los grises, 13 tiras en escritorio y 7 en celular, y un 40 % de ellas hechas de palabras.
+- **Bloques más chicos y con menos peso:**
+  - Hay 3 en escritorio y 2 en celular.
+  - Cada bloque es una cápsula redondeada que arma solo la palabra de su proceso («cobranza», «contratos», «reportes»), con letras atrapadas de las tiras de texto. Ya no lleva números, cubos ni rombos.
+- **Conexiones:** cada una prueba varias rutas en ángulo recto y elige la más corta que no toca el título ni los bordes.
